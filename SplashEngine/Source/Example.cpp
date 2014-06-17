@@ -7,6 +7,7 @@
 #include "Rendering/Texture/Texture.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
+#include "Rendering/Primitive/Line.h"
 #include "Window/Window.h"
 #include <iostream>
 
@@ -26,16 +27,25 @@ void EngineTest (){
 
 	// Load Skybox Shader
 	se::rendering::Material matSkybox;
-	matSkybox.Load ("Shaders/Skybox/Skybox.vert", "", "", "", "Shaders/Skybox/Skybox.frag");
+	matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
-	matPostPass.Load ("Shaders/PostPass/PostPass.vert", "", "", "", "Shaders/PostPass/PostPass.frag");
+	matPostPass.Load (se::DEFAULT_MATERIAL::POSTPASS);
+
+	// Load Line Shader
+	se::rendering::Material matLine;
+	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE);
 
 	// Load Skybox
 	se::rendering::Skybox skybox;
 	skybox.Load ("TestResources/left.tif", "TestResources/right.tif", "TestResources/down.tif", "TestResources/up.tif", "TestResources/front.tif", "TestResources/back.tif", &matSkybox);
 	sManager.Add (&skybox);
+
+	// Create Line
+	se::rendering::Line line;
+	line.Create (glm::vec3 (0), glm::vec3 (4), glm::vec3 (1, 0, 0), &matLine);
+	sManager.Add (&line);
 
 	// The Main Render Loop
 	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){

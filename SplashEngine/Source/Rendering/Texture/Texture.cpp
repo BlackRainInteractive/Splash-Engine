@@ -95,8 +95,8 @@ namespace se{
 
 		// Add A Texture (CubeMap)
 		bool Texture::Load (std::string PosX, std::string NegX, 
-						   std::string PosY, std::string NegY, 
-						   std::string PosZ, std::string NegZ, std::string TextureName){
+						    std::string PosY, std::string NegY, 
+						    std::string PosZ, std::string NegZ, std::string TextureName){
 
 			// Create The Texture Path Array
 			std::string texPathList [6] = {PosX, NegX, PosY, NegY, PosZ, NegZ};
@@ -160,7 +160,7 @@ namespace se{
 					glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
 
 					// Buffer Texture Data
-					glTexImage2D (GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, texWidth, texWidth, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+					glTexImage2D (GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, texWidth, texWidth, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
 
 					// Unload FreeImage Texture
 					FreeImage_Unload (imageBitmap);
@@ -230,7 +230,7 @@ namespace se{
 			int counter = 0;
 
 			// Loop Though Map And Pass Texture
-			for (std::pair <std::string, unsigned int> tex : Texture::textureList){
+			for (auto tex : Texture::textureList){
 
 				Texture::BindTexture (Material, tex.first.c_str (), TEXTURE_SLOT (TEXTURE_SLOT::SLOT0 + counter), counter);
 				++counter;
@@ -244,7 +244,7 @@ namespace se{
 		// Destroy The Texture
 		Texture::~Texture (){
 
-			for (std::pair <std::string, unsigned int> tex : Texture::textureList)
+			for (auto tex : Texture::textureList)
 				glDeleteTextures (1, &tex.second);
 		}
 	}

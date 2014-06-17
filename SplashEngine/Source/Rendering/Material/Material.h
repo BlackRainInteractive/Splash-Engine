@@ -7,6 +7,17 @@
 // The Splash Engine Namespace
 namespace se{
 
+	// The Default Material Enum
+	enum DEFAULT_MATERIAL{
+
+		POSTPASS  = 0,
+		PRIMITIVE = 1,
+		SKYBOX    = 2,
+		TEXT      = 3
+	};
+
+/*============================================================================================================*/
+
 	// The Rendering Namespace
 	namespace rendering{
 
@@ -20,6 +31,7 @@ namespace se{
 			// Functions - Shader Loading
 			bool Load (std::string VertShader, std::string GeomShader, std::string ControlShader,
 					   std::string EvalShader, std::string FragShader);
+			bool Load (DEFAULT_MATERIAL DefaultMaterial);
 			void Bind (bool Bind);
 
 			// Functions - Uniforms

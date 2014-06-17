@@ -2,6 +2,7 @@
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
+#include "../Primitive/Line.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
@@ -123,6 +124,13 @@ namespace se{
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
+		// Add Line
+		void SceneManager::Add (Line* Object){
+			SceneManager::lineList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
 		// Add Skybox
 		void SceneManager::Add (Skybox* Object){
 			SceneManager::skyboxList.push_back (Object);
@@ -139,6 +147,9 @@ namespace se{
 
 			// Draw All Objects
 			SceneManager::DrawSkybox (Camera);
+
+			for (auto object : SceneManager::lineList)
+				object -> Draw (Camera);
 
 			// Unbind FBO
 			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);

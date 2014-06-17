@@ -94,6 +94,7 @@
     <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
+    <ClCompile Include="Source\Rendering\Primitive\Line.cpp" />
     <ClCompile Include="Source\Rendering\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Source\Rendering\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Rendering\Texture\Texture.cpp" />
@@ -105,10 +106,10 @@
   <ItemGroup>
     <ClInclude Include="Source\Base\GameObject.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
-    <ClInclude Include="Source\GUI\Text\Text.h" />
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Rendering\Camera\Camera.h" />
     <ClInclude Include="Source\Rendering\Material\Material.h" />
+    <ClInclude Include="Source\Rendering\Primitive\Line.h" />
     <ClInclude Include="Source\Rendering\SceneManager\SceneManager.h" />
     <ClInclude Include="Source\Rendering\Skybox\Skybox.h" />
     <ClInclude Include="Source\Rendering\Texture\Texture.h" />

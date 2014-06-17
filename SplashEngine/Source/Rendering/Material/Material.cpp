@@ -137,6 +137,32 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Load From List Of Default Materials
+		bool Material::Load (DEFAULT_MATERIAL DefaultMaterial){
+
+			switch (DefaultMaterial){
+
+			// Load Post Pass Material
+			case DEFAULT_MATERIAL::POSTPASS:
+				return (Material::Load ("Shaders/PostPass/PostPass.vert", "", "", "", "Shaders/PostPass/PostPass.frag"));
+
+			case DEFAULT_MATERIAL::PRIMITIVE:
+				return (Material::Load ("Shaders/Primitive/Primitive.vert", "", "", "", "Shaders/Primitive/Primitive.frag"));
+
+			// Load Skybox Material
+			case DEFAULT_MATERIAL::SKYBOX:
+				return (Material::Load ("Shaders/Skybox/Skybox.vert", "", "", "", "Shaders/Skybox/Skybox.frag"));
+
+			// Load Text Material
+			case DEFAULT_MATERIAL::TEXT:
+				return (Material::Load ("Shaders/Text/Text.vert", "", "", "", "Shaders/Text/Text.frag"));
+			}
+
+			return false;
+		}
+
+/*============================================================================================================*/
+
 		// Bind The Material
 		void Material::Bind (bool Bind){
 
