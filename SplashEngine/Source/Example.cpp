@@ -2,12 +2,12 @@
 #include "Input/Input.h"
 #include "Rendering/Camera/Camera.h"
 #include "Rendering/Material/Material.h"
+#include "Rendering/Primitive/Line.h"
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
 #include "Rendering/Texture/Texture.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
-#include "Rendering/Primitive/Line.h"
 #include "Window/Window.h"
 #include <iostream>
 
@@ -24,6 +24,7 @@ void EngineTest (){
 	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
 	camera.SetupPerspective (60);
 	camera.SetupFPS (0.3f, 10);
+	camera.Transform (glm::vec3 (0, 1, -4), glm::vec3 (0));
 
 	// Load Skybox Shader
 	se::rendering::Material matSkybox;
@@ -42,10 +43,20 @@ void EngineTest (){
 	skybox.Load ("TestResources/left.tif", "TestResources/right.tif", "TestResources/down.tif", "TestResources/up.tif", "TestResources/front.tif", "TestResources/back.tif", &matSkybox);
 	sManager.Add (&skybox);
 
-	// Create Line
-	se::rendering::Line line;
-	line.Create (glm::vec3 (0), glm::vec3 (4), glm::vec3 (1, 0, 0), &matLine);
-	sManager.Add (&line);
+	// Create Line X Axis
+	se::rendering::Line lineX;
+	lineX.Create (glm::vec3 (0), glm::vec3 (2, 0, 0), glm::vec3 (1, 0, 0), &matLine);
+	sManager.Add (&lineX);
+
+	// Create Line Y Axis
+	se::rendering::Line lineY;
+	lineY.Create (glm::vec3 (0), glm::vec3 (0, 2, 0), glm::vec3 (0, 1, 0), &matLine);
+	sManager.Add (&lineY);
+
+	// Create Line Z Axis
+	se::rendering::Line lineZ;
+	lineZ.Create (glm::vec3 (0), glm::vec3 (0, 0, 2), glm::vec3 (0, 0, 1), &matLine);
+	sManager.Add (&lineZ);
 
 	// The Main Render Loop
 	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
