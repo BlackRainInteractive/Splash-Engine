@@ -2,12 +2,14 @@
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
+#include "../Primitive/Cube.h"
 #include "../Primitive/Grid.h"
 #include "../Primitive/Line.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
 #include <iostream>
+#include <vector>
 
 // The Splash Engine Namespace
 namespace se{
@@ -125,6 +127,13 @@ namespace se{
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
+		// Add Cube
+		void SceneManager::Add (Cube* Object){
+			SceneManager::cubeList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
 		// Add Grid
 		void SceneManager::Add (Grid* Object){
 			SceneManager::gridList.push_back (Object);
@@ -193,6 +202,10 @@ namespace se{
 
 		// Draw All Primitives
 		void SceneManager::DrawPrimitives (Camera* Camera){
+
+			// Draw Cubes
+			for (auto object : SceneManager::cubeList)
+				object -> Draw (Camera);
 
 			// Draw Grids
 			for (auto object : SceneManager::gridList)

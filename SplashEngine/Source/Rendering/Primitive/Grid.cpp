@@ -16,24 +16,25 @@ namespace se{
 		// Create The Grid
 		bool Grid::Create (glm::vec3 Position, int GridCount, glm::vec3 Colour, Material* Material){
 
-			// Set The Grid Functions
+			// Set The Grid Variables
 			Grid::position = Position;
 			Grid::rotation = glm::vec3 (0);
 			Grid::scale	   = glm::vec3 (1);
 			Grid::colour   = Colour;
 			Grid::material = Material;
+			Grid::parent   = nullptr;
 
 			// Set The Grid Model Matrix
 			Grid::Transform (Grid::position, Grid::rotation);
 
 			// Loop Though And Add Lines
-			for (int i = 0 ; i < GridCount + 1; ++i){
+			for (int i = 0; i < GridCount + 1; ++i){
 
 				// X Axis
 				Grid::vertexList.push_back (glm::vec3 (-(GridCount / 2) + i, 0,  (GridCount / 2)));
 				Grid::vertexList.push_back (glm::vec3 (-(GridCount / 2) + i, 0, -(GridCount / 2)));
 
-				// Y Axis
+				// Z Axis
 				Grid::vertexList.push_back (glm::vec3 ( GridCount / 2, 0, -(GridCount / 2) + i));
 				Grid::vertexList.push_back (glm::vec3 (-GridCount / 2, 0, -(GridCount / 2) + i));
 			}
@@ -63,7 +64,12 @@ namespace se{
 		void Grid::Draw (Camera* Camera){
 
 			// Set The Matrix Transforms
-			Grid::material -> SetUniform ("M", Grid::mMatrix);
+			if (Grid::parent != nullptr)
+				Grid::material -> SetUniform ("M", Grid::parent -> mMatrix * Grid::mMatrix);
+
+			else
+				Grid::material -> SetUniform ("M", Grid::mMatrix);
+
 			Grid::material -> SetUniform ("V", Camera -> vMatrix);
 			Grid::material -> SetUniform ("P", Camera -> pMatrix);
 
@@ -86,7 +92,7 @@ namespace se{
 /*------DESTRUCTOR--------------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-		// Destroy The Line
+		// Destroy The Grid
 		Grid::~Grid (){
 
 			glDeleteVertexArrays (1, &arrayBuffer);

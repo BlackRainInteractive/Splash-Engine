@@ -94,6 +94,7 @@
     <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
+    <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Grid.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Line.cpp" />
     <ClCompile Include="Source\Rendering\SceneManager\SceneManager.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Rendering\Camera\Camera.h" />
     <ClInclude Include="Source\Rendering\Material\Material.h" />
+    <ClInclude Include="Source\Rendering\Primitive\Cube.h" />
     <ClInclude Include="Source\Rendering\Primitive\Grid.h" />
     <ClInclude Include="Source\Rendering\Primitive\Line.h" />
     <ClInclude Include="Source\Rendering\SceneManager\SceneManager.h" />

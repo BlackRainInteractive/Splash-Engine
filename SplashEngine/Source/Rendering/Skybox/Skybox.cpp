@@ -18,6 +18,9 @@ namespace se{
 		// The Default Skybox Constructor
 		Skybox::Skybox (){
 
+			// Set Variables
+			Skybox::parent = nullptr;
+
 			// Create A New Texture
 			Skybox::texture = std::shared_ptr <Texture> (new Texture);
 
