@@ -11,6 +11,7 @@ namespace se{
 
 		// Forward Declare Rendering Classes
 		class Camera;
+		class Grid;
 		class Line;
 		class Material;
 		class Skybox;
@@ -27,6 +28,7 @@ namespace se{
 			virtual ~SceneManager ();
 
 			// Functions - Adding Objects
+			void Add (Grid* Object);
 			void Add (Line* Object);
 			void Add (Skybox* Object);
 
@@ -34,6 +36,7 @@ namespace se{
 			void DrawAll (Camera* Camera, Material* PostPass);
 
 			// Variables - Objects
+			std::vector <Grid*> gridList;
 			std::vector <Line*> lineList;
 			std::vector <Skybox*> skyboxList;
 
@@ -47,6 +50,7 @@ namespace se{
 
 			// Functions - Drawing
 			void DrawGBuffer (Material* Material);
+			void DrawPrimitives (Camera* Camera);
 			void DrawSkybox (Camera* Camera);
 		};
 	}

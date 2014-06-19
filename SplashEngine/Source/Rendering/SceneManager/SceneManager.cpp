@@ -2,6 +2,7 @@
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
+#include "../Primitive/Grid.h"
 #include "../Primitive/Line.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
@@ -124,6 +125,13 @@ namespace se{
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
+		// Add Grid
+		void SceneManager::Add (Grid* Object){
+			SceneManager::gridList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
 		// Add Line
 		void SceneManager::Add (Line* Object){
 			SceneManager::lineList.push_back (Object);
@@ -147,9 +155,7 @@ namespace se{
 
 			// Draw All Objects
 			SceneManager::DrawSkybox (Camera);
-
-			for (auto object : SceneManager::lineList)
-				object -> Draw (Camera);
+			SceneManager::DrawPrimitives (Camera);
 
 			// Unbind FBO
 			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);
@@ -181,6 +187,20 @@ namespace se{
 
 			// Unbind The Material
 			Material -> Bind (false);
+		}
+
+/*============================================================================================================*/
+
+		// Draw All Primitives
+		void SceneManager::DrawPrimitives (Camera* Camera){
+
+			// Draw Grids
+			for (auto object : SceneManager::gridList)
+				object -> Draw (Camera);
+
+			// Draw Lines
+			for (auto object : SceneManager::lineList)
+				object -> Draw (Camera);
 		}
 
 /*============================================================================================================*/

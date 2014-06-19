@@ -2,6 +2,7 @@
 #include "Input/Input.h"
 #include "Rendering/Camera/Camera.h"
 #include "Rendering/Material/Material.h"
+#include "Rendering/Primitive/Grid.h"
 #include "Rendering/Primitive/Line.h"
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
@@ -9,7 +10,6 @@
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
 #include "Window/Window.h"
-#include <iostream>
 
 void EngineTest (){
 
@@ -23,7 +23,7 @@ void EngineTest (){
 	se::rendering::Camera camera;
 	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
 	camera.SetupPerspective (60);
-	camera.SetupFPS (0.3f, 10);
+	camera.SetupFPS (0.9f, 10);
 	camera.Transform (glm::vec3 (0, 1, -4), glm::vec3 (0));
 
 	// Load Skybox Shader
@@ -39,9 +39,9 @@ void EngineTest (){
 	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE);
 
 	// Load Skybox
-	se::rendering::Skybox skybox;
-	skybox.Load ("TestResources/left.tif", "TestResources/right.tif", "TestResources/down.tif", "TestResources/up.tif", "TestResources/front.tif", "TestResources/back.tif", &matSkybox);
-	sManager.Add (&skybox);
+	//se::rendering::Skybox skybox;
+	//skybox.Load ("TestResources/left.tif", "TestResources/right.tif", "TestResources/down.tif", "TestResources/up.tif", "TestResources/front.tif", "TestResources/back.tif", &matSkybox);
+	//sManager.Add (&skybox);
 
 	// Create Line X Axis
 	se::rendering::Line lineX;
@@ -57,6 +57,11 @@ void EngineTest (){
 	se::rendering::Line lineZ;
 	lineZ.Create (glm::vec3 (0), glm::vec3 (0, 0, 2), glm::vec3 (0, 0, 1), &matLine);
 	sManager.Add (&lineZ);
+
+	// Create A Grid
+	se::rendering::Grid grid;
+	grid.Create (glm::vec3 (0, -0.001f, 0), 24, glm::vec3 (0), &matLine);
+	sManager.Add (&grid);
 
 	// The Main Render Loop
 	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
