@@ -12,7 +12,7 @@ It has been tested on Windows and Linux (Arch). In theory, it should also run on
 Also, no dependencies are included. You will need to download them yourself.
 The dependencies are listed below.
 
-Requrired Dependencies
+Required Dependencies
 --------------------
 
 - GLFW3
