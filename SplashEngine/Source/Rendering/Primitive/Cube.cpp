@@ -120,6 +120,7 @@ namespace se{
 
 			glDeleteVertexArrays (1, &arrayBuffer);
 			glDeleteBuffers		 (1, &vertexBuffer);
+			glDeleteBuffers		 (1, &indexBuffer);
 		}
 	}
 }
