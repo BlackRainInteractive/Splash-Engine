@@ -22,6 +22,7 @@ namespace se{
 			Camera::position   = glm::vec3 (0);
 			Camera::rotation   = glm::vec3 (0);
 			Camera::upVec	   = glm::vec3 (0, 1, 0);
+			Camera::parent     = nullptr;
 		}
 
 /*============================================================================================================*/
@@ -104,7 +105,11 @@ namespace se{
 			}
 
 			// Calc View Matrix
-			Camera::vMatrix = glm::lookAt (Camera::position, Camera::target, Camera::upVec);
+			if (Camera::parent != nullptr)
+				Camera::vMatrix = glm::lookAt (Camera::position, Camera::target, Camera::upVec) * glm::inverse (Camera::parent -> mMatrix);
+
+			else
+				Camera::vMatrix = glm::lookAt (Camera::position, Camera::target, Camera::upVec);
 		}
 
 /*============================================================================================================*/

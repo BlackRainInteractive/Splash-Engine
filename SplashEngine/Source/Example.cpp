@@ -22,7 +22,7 @@ void EngineTest (){
 	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
 	camera.SetupPerspective (60);
 	camera.SetupFPS (0.9f, 10);
-	camera.Transform (glm::vec3 (0, 1, -4), glm::vec3 (0));
+	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
 
 	// Load Skybox Shader
 	se::rendering::Material matSkybox;
@@ -67,6 +67,8 @@ void EngineTest (){
 	cube.SetParent (&grid);
 	sManager.Add (&cube);
 
+	//camera.SetParent (&cube);
+
 	// The Main Render Loop
 	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
 
@@ -77,8 +79,12 @@ void EngineTest (){
 		cube.Transform (cube.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
 
 		// Rotate The Grid
-		if (se::Input::GetKeyPressed (se::KEY::KEY_ENTER))
-			grid.Transform (grid.position, glm::vec3 (0, grid.rotation.y - (float) se::Time::deltaTime * 50, 0));
+		if (se::Input::GetKeyPressed (se::KEY::KEY_ENTER)){
+
+			grid.Transform (grid.position, glm::vec3 (grid.rotation.x - (float) se::Time::deltaTime * 25, 
+													  grid.rotation.y - (float) se::Time::deltaTime * 50, 
+													  grid.rotation.z + (float) se::Time::deltaTime * 75));
+		}
 
 		// Render The Scene
 		sManager.DrawAll (&camera, &matPostPass);
