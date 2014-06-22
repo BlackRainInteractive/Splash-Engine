@@ -83,12 +83,7 @@ namespace se{
 		void Cube::Draw (Camera* Camera){
 
 			// Set The Matrix Transforms
-			if (Cube::parent != nullptr)
-				Cube::material -> SetUniform ("M", Cube::parent -> mMatrix * Cube::mMatrix);
-
-			else
-				Cube::material -> SetUniform ("M", Cube::mMatrix);
-
+			Cube::material -> SetUniform ("M", Cube::GetParentTransforms () * Cube::mMatrix);
 			Cube::material -> SetUniform ("V", Camera -> vMatrix);
 			Cube::material -> SetUniform ("P", Camera -> pMatrix);
 

@@ -25,8 +25,8 @@ void EngineTest (){
 	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
 
 	// Load Skybox Shader
-	se::rendering::Material matSkybox;
-	matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
+	//se::rendering::Material matSkybox;
+	//matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
@@ -61,13 +61,25 @@ void EngineTest (){
 	grid.Create (glm::vec3 (0, -0.001f, 0), 20, glm::vec3 (0), &matLine);
 	sManager.Add (&grid);
 
-	// Create A Cube
+	// Create First Cube
 	se::rendering::Cube cube;
-	cube.Create (glm::vec3 (5, 0.5f, 5), glm::vec3 (1, 1, 4), glm::vec3 (1, 0, 0), &matLine);
+	cube.Create (glm::vec3 (5, 0.5f, 5), glm::vec3 (1, 1, 5), glm::vec3 (1, 0, 0), &matLine);
 	cube.SetParent (&grid);
 	sManager.Add (&cube);
 
-	//camera.SetParent (&cube);
+	// Create Second Cube
+	se::rendering::Cube cube2;
+	cube2.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 5), glm::vec3 (0, 1, 0), &matLine);
+	cube2.SetParent (&cube);
+	sManager.Add (&cube2);
+
+	// Create Third Cube
+	se::rendering::Cube cube3;
+	cube3.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 4), glm::vec3 (0, 0, 1), &matLine);
+	cube3.SetParent (&cube2);
+	sManager.Add (&cube3);
+
+	//camera.SetParent (&grid);
 
 	// The Main Render Loop
 	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
@@ -75,8 +87,10 @@ void EngineTest (){
 		// Update The Camera
 		camera.Update ();
 
-		// Rotate The Cube
+		// Rotate The Cubes
 		cube.Transform (cube.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
+		cube2.Transform (cube2.position, glm::vec3 (0, (float) -se::Time::GetElapsedTime () * 200, 0));
+		cube3.Transform (cube2.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
 
 		// Rotate The Grid
 		if (se::Input::GetKeyPressed (se::KEY::KEY_ENTER)){

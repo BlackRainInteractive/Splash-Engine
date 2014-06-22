@@ -64,12 +64,7 @@ namespace se{
 		void Grid::Draw (Camera* Camera){
 
 			// Set The Matrix Transforms
-			if (Grid::parent != nullptr)
-				Grid::material -> SetUniform ("M", Grid::parent -> mMatrix * Grid::mMatrix);
-
-			else
-				Grid::material -> SetUniform ("M", Grid::mMatrix);
-
+			Grid::material -> SetUniform ("M", Grid::GetParentTransforms () * Grid::mMatrix);
 			Grid::material -> SetUniform ("V", Camera -> vMatrix);
 			Grid::material -> SetUniform ("P", Camera -> pMatrix);
 
