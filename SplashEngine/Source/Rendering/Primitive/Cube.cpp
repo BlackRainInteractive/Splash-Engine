@@ -26,7 +26,7 @@ namespace se{
 
 			glm::vec3 halfSize = Size * 0.5f;
 
-			// Set The Grid Model Matrix
+			// Set The Cube Model Matrix
 			Cube::Transform (Cube::position, Cube::rotation, Cube::scale);
 
 			// Create Cube Verts

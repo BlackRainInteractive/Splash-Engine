@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../Base/GameObject.h"
-#include <vector>
 
 // The Splash Engine Namespace
 namespace se{
