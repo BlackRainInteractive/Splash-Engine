@@ -16,6 +16,7 @@ namespace se{
 		class Line;
 		class Material;
 		class Skybox;
+		class Sphere;
 		class Texture;
 
 /*============================================================================================================*/
@@ -33,6 +34,7 @@ namespace se{
 			void Add (Grid* Object);
 			void Add (Line* Object);
 			void Add (Skybox* Object);
+			void Add (Sphere* Object);
 
 			// Functions - Drawing
 			void DrawAll (Camera* Camera, Material* PostPass);
@@ -42,6 +44,7 @@ namespace se{
 			std::vector <Grid*> gridList;
 			std::vector <Line*> lineList;
 			std::vector <Skybox*> skyboxList;
+			std::vector <Sphere*> sphereList;
 
 			// Variables - GBuffer
 			std::shared_ptr <Texture> textureGBuffer;

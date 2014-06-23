@@ -5,6 +5,7 @@
 #include "../Primitive/Cube.h"
 #include "../Primitive/Grid.h"
 #include "../Primitive/Line.h"
+#include "../Primitive/Sphere.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
@@ -155,6 +156,13 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Add Sphere
+		void SceneManager::Add (Sphere* Object){
+			SceneManager::sphereList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
 		// Update And Draw Objects
 		void SceneManager::DrawAll (Camera* Camera, Material* PostPass){
 
@@ -213,6 +221,10 @@ namespace se{
 
 			// Draw Lines
 			for (auto object : SceneManager::lineList)
+				object -> Draw (Camera);
+
+			// Draw Spheres
+			for (auto object : SceneManager::sphereList)
 				object -> Draw (Camera);
 		}
 

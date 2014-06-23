@@ -8,6 +8,7 @@
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
 #include "Rendering/Texture/Texture.h"
+#include "Rendering/Primitive/Sphere.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
 #include "Window/Window.h"
@@ -21,7 +22,7 @@ void EngineTest (){
 	se::rendering::Camera camera;
 	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
 	camera.SetupPerspective (60);
-	camera.SetupFPS (0.9f, 10);
+	camera.SetupFPS (0.6f, 10);
 	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
 
 	// Load Skybox Shader
@@ -78,6 +79,11 @@ void EngineTest (){
 	cube3.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 4), glm::vec3 (0, 0, 1), &matLine);
 	cube3.SetParent (&cube2);
 	sManager.Add (&cube3);
+
+	// Create A Sphere
+	se::rendering::Sphere sphere;
+	sphere.Create (glm::vec3 (-5, 1, 0), 1, 16, 16, glm::vec3 (1), &matLine);
+	sManager.Add (&sphere);
 
 	//camera.SetParent (&grid);
 

@@ -97,6 +97,7 @@
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Grid.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Line.cpp" />
+    <ClCompile Include="Source\Rendering\Primitive\Sphere.cpp" />
     <ClCompile Include="Source\Rendering\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Source\Rendering\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Rendering\Texture\Texture.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="Source\Rendering\Primitive\Cube.h" />
     <ClInclude Include="Source\Rendering\Primitive\Grid.h" />
     <ClInclude Include="Source\Rendering\Primitive\Line.h" />
+    <ClInclude Include="Source\Rendering\Primitive\Sphere.h" />
     <ClInclude Include="Source\Rendering\SceneManager\SceneManager.h" />
     <ClInclude Include="Source\Rendering\Skybox\Skybox.h" />
     <ClInclude Include="Source\Rendering\Texture\Texture.h" />
