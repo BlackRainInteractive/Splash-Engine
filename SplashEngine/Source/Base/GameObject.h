@@ -16,7 +16,6 @@ namespace se{
 			virtual void SetParent (GameObject* Parent);
 			virtual void Transform (glm::vec3 Position, glm::vec3 Rotation, glm::vec3 Scale = glm::vec3 (1));
 			virtual void Transform (glm::mat4 ModelMatrix);
-			virtual glm::mat4 GetParentTransforms ();
 
 			// Variables - Transform
 			glm::vec3 position;
@@ -26,6 +25,11 @@ namespace se{
 
 			// Variables - Misc
 			GameObject* parent;
+
+		protected:
+
+			// Functions
+			virtual glm::mat4 GetParentTransforms ();
 		};
 	}
 }
