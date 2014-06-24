@@ -4,8 +4,8 @@
 layout (location = 0) in vec3 VertexPos;
 
 // Out Variables
-out vec3 UV;
-out vec4 WorldPos;
+out vec3 vUV;
+out vec4 vWorldPos;
 
 // Uniforms
 uniform mat4 M;
@@ -19,6 +19,6 @@ void main (){
 	gl_Position = (P * V * M) * vec4 (VertexPos, 1);
 	
 	// Set UV Coords, Normals, And World Pos
-	UV = -VertexPos;
-	WorldPos = (V * M * (vec4 (VertexPos, 1.0)));
+	vUV = -VertexPos;
+	vWorldPos = (V * M * (vec4 (VertexPos, 1.0)));
 }
