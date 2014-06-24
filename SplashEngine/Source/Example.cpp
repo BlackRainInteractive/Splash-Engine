@@ -5,10 +5,10 @@
 #include "Rendering/Primitive/Cube.h"
 #include "Rendering/Primitive/Grid.h"
 #include "Rendering/Primitive/Line.h"
+#include "Rendering/Primitive/Sphere.h"
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
 #include "Rendering/Texture/Texture.h"
-#include "Rendering/Primitive/Sphere.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
 #include "Window/Window.h"
@@ -26,16 +26,20 @@ void EngineTest (){
 	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
 
 	// Load Skybox Shader
-	//se::rendering::Material matSkybox;
-	//matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
+	se::rendering::Material matSkybox;
+	matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
 	matPostPass.Load (se::DEFAULT_MATERIAL::POSTPASS);
 
+	// Load Solid Shader
+	se::rendering::Material matSolid;
+	matSolid.Load (se::DEFAULT_MATERIAL::PRIMITIVE_SOLID);
+
 	// Load Line Shader
 	se::rendering::Material matLine;
-	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE);
+	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE_LINE);
 
 	// Load Skybox
 	//se::rendering::Skybox skybox;
@@ -64,25 +68,26 @@ void EngineTest (){
 
 	// Create First Cube
 	se::rendering::Cube cube;
-	cube.Create (glm::vec3 (5, 0.5f, 5), glm::vec3 (1, 1, 5), glm::vec3 (1, 0, 0), &matLine);
+	cube.Create (glm::vec3 (5, 0.5f, 5), glm::vec3 (1, 1, 5), glm::vec3 (1, 0, 0), &matSolid);
 	cube.SetParent (&grid);
 	sManager.Add (&cube);
 
 	// Create Second Cube
 	se::rendering::Cube cube2;
-	cube2.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 5), glm::vec3 (0, 1, 0), &matLine);
+	cube2.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 5), glm::vec3 (0, 1, 0), &matSolid);
 	cube2.SetParent (&cube);
 	sManager.Add (&cube2);
 
 	// Create Third Cube
 	se::rendering::Cube cube3;
-	cube3.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 4), glm::vec3 (0, 0, 1), &matLine);
+	cube3.Create (glm::vec3 (0, 1, 2), glm::vec3 (1, 1, 4), glm::vec3 (0, 0, 1), &matSolid);
 	cube3.SetParent (&cube2);
 	sManager.Add (&cube3);
 
 	// Create A Sphere
 	se::rendering::Sphere sphere;
-	sphere.Create (glm::vec3 (-5, 1, 0), 1, 16, 16, glm::vec3 (1), &matLine);
+	sphere.Create (glm::vec3 (-5, 1, 0), 1, 32, 16, glm::vec3 (1), &matSolid);
+	sphere.SetParent (&grid);
 	sManager.Add (&sphere);
 
 	//camera.SetParent (&grid);
