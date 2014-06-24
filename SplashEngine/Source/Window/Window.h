@@ -1,5 +1,6 @@
 #pragma once
 
+#include <glm/glm.hpp>
 #include <string>
 
 // Forward Declare GLFW Window
@@ -31,6 +32,9 @@ namespace se{
 		static int width;
 		static int height;
 		static std::string title;
+
+		// Variables - Matrices
+		static glm::mat4 vpMatrix;
 
 		// Variables - Window Handle
 		static GLFWwindow* windowHandle;

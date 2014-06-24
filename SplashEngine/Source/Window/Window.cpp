@@ -12,6 +12,7 @@ namespace se{
 	int Window::width;
 	int Window::height;
 	std::string Window::title;
+	glm::mat4 Window::vpMatrix;
 	GLFWwindow* Window::windowHandle;
 
 /*============================================================================================================*/
@@ -25,6 +26,12 @@ namespace se{
 		Window::width  = Width;
 		Window::height = Height;
 		Window::title  = Title;
+
+		// Create The VP Matrix
+		Window::vpMatrix = glm::mat4 (glm::vec4 (Width / 2, 0.0f, 0.0f, 0.0f),
+									  glm::vec4 (0.0f, Height / 2, 0.0f, 0.0f),
+									  glm::vec4 (0.0f, 0.0f, 1.0f, 0.0f),
+									  glm::vec4 (Width / 2, Height / 2, 0.0f, 1.0f));
 
 		// Print Creating Window
 		std::cout << "Creating Window... ";
@@ -71,8 +78,17 @@ namespace se{
 	// Set The Window Size
 	void Window::SetSize (int Width, int Height){
 
+		// Set Variables
 		Window::width  = Width;
 		Window::height = Height;
+
+		// Set The VP Matrix
+		Window::vpMatrix = glm::mat4 (glm::vec4 (Width / 2, 0.0f, 0.0f, 0.0f),
+									  glm::vec4 (0.0f, Height / 2, 0.0f, 0.0f),
+									  glm::vec4 (0.0f, 0.0f, 1.0f, 0.0f),
+									  glm::vec4 (Width / 2, Height / 2, 0.0f, 1.0f));
+
+		// Set The Window Size
 		glfwSetWindowSize (Window::windowHandle, Width, Height);
 	}
 
