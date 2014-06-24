@@ -10,10 +10,11 @@ namespace se{
 	// The Default Material Enum
 	enum DEFAULT_MATERIAL{
 
-		POSTPASS  = 0,
-		PRIMITIVE = 1,
-		SKYBOX    = 2,
-		TEXT      = 3
+		POSTPASS        = 0,
+		PRIMITIVE_LINE  = 1,
+		PRIMITIVE_SOLID = 2,
+		SKYBOX          = 3,
+		TEXT            = 4
 	};
 
 /*============================================================================================================*/

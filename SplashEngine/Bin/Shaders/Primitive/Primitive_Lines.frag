@@ -5,7 +5,7 @@ layout (location = 0) out vec3 DiffuseOut;
 layout (location = 3) out vec3 PositionOut;
 
 // In Variables
-in vec4 WorldPos;
+in vec3 vWorldPos;
 
 // Uniforms
 uniform vec3 Colour;
@@ -14,5 +14,5 @@ uniform vec3 Colour;
 void main (){
 
 	DiffuseOut   = Colour;
-	PositionOut  = WorldPos.xyz;
+	PositionOut  = vWorldPos.xyz;
 }

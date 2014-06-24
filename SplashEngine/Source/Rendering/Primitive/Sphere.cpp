@@ -1,7 +1,7 @@
 #include "Sphere.h"
+#include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
-#include "../../Window/Window.h"
 #include <GL/glew.h>
 
 // The Splash Engine Namespace
@@ -28,21 +28,17 @@ namespace se{
 			// Set The Sphere Model Matrix
 			Sphere::Transform (Sphere::position, Sphere::rotation, Sphere::scale);
 
-			// Define PI Values
-			const float pi =  3.1415926535897932384626433832795f;
-			const float pi2 = 2.0f * pi;
-
 			// Calc The Vertices
 			for (int i = 0; i <= Stacks; ++i){
 
-				float V = i / (float) Stacks;
-				float phi = V * pi;
+				float V   = i / (float) Stacks;
+				float phi = V * glm::pi <float> ();
 
 				// Loop Through Slices
 				for (int j = 0; j <= Slices; ++j){
 
 					float U = j / (float) Slices;
-					float theta = U * pi2;
+					float theta = U * (glm::pi <float> () * 2);
 
 					// Calc The Vertex Postions
 					float x = cosf (theta) * sinf (phi);
@@ -99,6 +95,7 @@ namespace se{
 			Sphere::material -> SetUniform ("M", Sphere::GetParentTransforms () * Sphere::mMatrix);
 			Sphere::material -> SetUniform ("V", Camera -> vMatrix);
 			Sphere::material -> SetUniform ("P", Camera -> pMatrix);
+			Sphere::material -> SetUniform ("VP", Window::vpMatrix);
 
 			// Set Line Colour
 			Sphere::material -> SetUniform ("Colour", Sphere::colour);
@@ -108,11 +105,7 @@ namespace se{
 
 			// Bind VAO And Draw
 			glBindVertexArray (Sphere::arrayBuffer);
-
 				glDrawElements (GL_TRIANGLES, Sphere::indexBufferData.size (), GL_UNSIGNED_INT, nullptr);
-				Sphere::material -> SetUniform ("Colour", glm::vec3 (1) - Sphere::colour);
-				glDrawElements (GL_LINE_LOOP, Sphere::indexBufferData.size () * sizeof (unsigned int), GL_UNSIGNED_INT, nullptr);
-
 			glBindVertexArray (0);
 
 			// Unbind Material
@@ -123,7 +116,7 @@ namespace se{
 /*------DESTRUCTOR--------------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-		// Destroy The Cube
+		// Destroy The Sphere
 		Sphere::~Sphere (){
 
 			glDeleteVertexArrays (1, &arrayBuffer);

@@ -1,4 +1,5 @@
 #include "Cube.h"
+#include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
 #include <GL/glew.h>
@@ -86,6 +87,7 @@ namespace se{
 			Cube::material -> SetUniform ("M", Cube::GetParentTransforms () * Cube::mMatrix);
 			Cube::material -> SetUniform ("V", Camera -> vMatrix);
 			Cube::material -> SetUniform ("P", Camera -> pMatrix);
+			Cube::material -> SetUniform ("VP", Window::vpMatrix);
 
 			// Set Line Colour
 			Cube::material -> SetUniform ("Colour", Cube::colour);
@@ -95,11 +97,7 @@ namespace se{
 
 			// Bind VAO And Draw
 			glBindVertexArray (Cube::arrayBuffer);
-
 				glDrawElements (GL_TRIANGLES, 9 * sizeof (unsigned int), GL_UNSIGNED_INT, nullptr);
-				Cube::material -> SetUniform ("Colour", glm::vec3 (1) - Cube::colour);
-				glDrawElements (GL_LINE_LOOP, 9 * sizeof (unsigned int), GL_UNSIGNED_INT, nullptr);
-
 			glBindVertexArray (0);
 
 			// Unbind Material

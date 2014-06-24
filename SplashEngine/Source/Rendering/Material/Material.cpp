@@ -146,8 +146,13 @@ namespace se{
 			case DEFAULT_MATERIAL::POSTPASS:
 				return (Material::Load ("Shaders/PostPass/PostPass.vert", "", "", "", "Shaders/PostPass/PostPass.frag"));
 
-			case DEFAULT_MATERIAL::PRIMITIVE:
-				return (Material::Load ("Shaders/Primitive/Primitive.vert", "", "", "", "Shaders/Primitive/Primitive.frag"));
+			// Load Primitive Line Material
+			case DEFAULT_MATERIAL::PRIMITIVE_LINE:
+				return (Material::Load ("Shaders/Primitive/Primitive.vert", "", "", "", "Shaders/Primitive/Primitive_Lines.frag"));
+
+			// Load Primitive Solid Material
+			case DEFAULT_MATERIAL::PRIMITIVE_SOLID:
+				return (Material::Load ("Shaders/Primitive/Primitive.vert", "Shaders/Primitive/Primitive_Solid.geom", "", "", "Shaders/Primitive/Primitive_Solid.frag"));
 
 			// Load Skybox Material
 			case DEFAULT_MATERIAL::SKYBOX:
