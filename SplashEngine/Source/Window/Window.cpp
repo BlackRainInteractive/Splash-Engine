@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "../Input/Input.h"
 #include "../Time/Time.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -69,6 +70,9 @@ namespace se{
 		// Print OpenGL Version
 		std::cout << "\nUsing OpenGL Version " << glGetString (GL_VERSION) << '\n';
 		std::cout << "OpenGL Vendor - " << glGetString (GL_VENDOR) << "\n\n";
+
+		// Init The Input Class
+		Input::Input ();
 
 		return true;
 	}

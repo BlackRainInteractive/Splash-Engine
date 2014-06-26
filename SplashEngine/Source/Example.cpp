@@ -26,8 +26,8 @@ void EngineTest (){
 	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
 
 	// Load Skybox Shader
-	se::rendering::Material matSkybox;
-	matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
+	//se::rendering::Material matSkybox;
+	//matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
@@ -93,18 +93,18 @@ void EngineTest (){
 	//camera.SetParent (&grid);
 
 	// The Main Render Loop
-	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
+	while (se::Window::Render () && !se::Input::GetKey (se::KEY::KEY_ESCAPE, se::INPUT_STATE::PRESSED)){
 
 		// Update The Camera
 		camera.Update ();
 
 		// Rotate The Cubes
-		cube.Transform (cube.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
+		cube.Transform  (cube.position,  glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
 		cube2.Transform (cube2.position, glm::vec3 (0, (float) -se::Time::GetElapsedTime () * 200, 0));
 		cube3.Transform (cube2.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
 
 		// Rotate The Grid
-		if (se::Input::GetKeyPressed (se::KEY::KEY_ENTER)){
+		if (se::Input::GetKey (se::KEY::KEY_ENTER, se::INPUT_STATE::PRESSED_OR_HELD)){
 
 			grid.Transform (grid.position, glm::vec3 (grid.rotation.x - (float) se::Time::deltaTime * 25, 
 													  grid.rotation.y - (float) se::Time::deltaTime * 50, 

@@ -90,8 +90,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Base\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Example.cpp" />
+    <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
