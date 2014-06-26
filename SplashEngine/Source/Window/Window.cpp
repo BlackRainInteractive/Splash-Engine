@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "../Input/Input.h"
+#include "../Rendering/GUI/GUI.h"
 #include "../Time/Time.h"
+#include <Awesomium/WebCore.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -63,6 +65,7 @@ namespace se{
 		// Enable Required OpenGL Functionality
 		glEnable (GL_DEPTH_TEST);
 		glEnable (GL_CULL_FACE);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		// Set The Window Clear Colour
 		glClearColor (0.24f, 0.24f, 0.24f, 1);
@@ -152,6 +155,9 @@ namespace se{
 		// Swap The Buffers And Clear The Window
 		glfwSwapBuffers (Window::windowHandle);
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// Update Required Classes
+		rendering::GUI::webCore -> Update ();
 
 		return true;
 	}

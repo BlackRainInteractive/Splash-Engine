@@ -14,6 +14,7 @@ namespace se{
 	private:
 
 		// Functions - Library Initialization
+		static bool InitAwesomium ();
 		static bool InitGLFW ();
 	};
 }

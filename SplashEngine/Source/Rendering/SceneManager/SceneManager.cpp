@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
+#include "../GUI/GUI.h"
 #include "../Material/Material.h"
 #include "../Primitive/Cube.h"
 #include "../Primitive/Grid.h"
@@ -142,6 +143,13 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Add GUI
+		void SceneManager::Add (GUI* Object){
+			SceneManager::guiList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
 		// Add Line
 		void SceneManager::Add (Line* Object){
 			SceneManager::lineList.push_back (Object);
@@ -179,6 +187,18 @@ namespace se{
 
 			// Draw Fullscreen Plane
 			SceneManager::DrawGBuffer (PostPass);
+
+			// Disable Depth Testing
+			glDisable (GL_DEPTH_TEST);
+			glEnable (GL_BLEND);
+
+			// Draw GUI
+			for (auto object : SceneManager::guiList)
+				object -> Draw ();
+
+			// Enable Depth Testing
+			glDisable (GL_BLEND);
+			glEnable (GL_DEPTH_TEST);
 		}
 
 /*============================================================================================================*/

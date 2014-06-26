@@ -9,9 +9,11 @@
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
 #include "Rendering/Texture/Texture.h"
+#include "Rendering/GUI/GUI.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
 #include "Window/Window.h"
+#include <iostream>
 
 void EngineTest (){
 
@@ -20,7 +22,7 @@ void EngineTest (){
 
 	// Setup Camera
 	se::rendering::Camera camera;
-	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
+	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::TARGET);
 	camera.SetupPerspective (60);
 	camera.SetupFPS (0.6f, 10);
 	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
@@ -40,6 +42,10 @@ void EngineTest (){
 	// Load Line Shader
 	se::rendering::Material matLine;
 	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE_LINE);
+
+	// Load GUI Shader
+	se::rendering::Material matGUI;
+	matGUI.Load ("Shaders/GUI/GUI.vert", "", "", "", "Shaders/GUI/GUI.frag");
 
 	// Load Skybox
 	//se::rendering::Skybox skybox;
@@ -90,6 +96,11 @@ void EngineTest (){
 	sphere.SetParent (&grid);
 	sManager.Add (&sphere);
 
+	se::rendering::GUI gui;
+	gui.LoadFromURL ("http://peacekeeper.futuremark.com", &matGUI);
+	gui.SetDiscardColour (glm::vec4 (1));
+	sManager.Add (&gui);
+
 	//camera.SetParent (&grid);
 
 	// The Main Render Loop
@@ -122,8 +133,8 @@ int main (){
 	se::Engine::Initialize ();
 
 	// Create Window And Hide Cursor
-	se::Window::Create (1280, 720, "Splash Engine | Revision 3");
-	se::Window::ShowCursor (false);
+	se::Window::Create (1280, 720, "Splash Engine | Revision 3", false);
+	//se::Window::ShowCursor (false);
 
 	// Center Cursor
 	se::Input::SetMousePos (se::Window::width / 2, se::Window::height / 2);
