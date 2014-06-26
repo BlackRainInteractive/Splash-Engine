@@ -10,11 +10,14 @@ It is also in very early development, and is far from being feature complete.
 It has been tested on Windows and Linux (Arch). In theory, it should also run on OSX, but it hasn't been tested.
 
 Also, no dependencies are included. You will need to download them yourself.
+This is due to the use of some commercial libraries.
+
 The dependencies are listed below.
 
 Required Dependencies
 --------------------
 
+- Awesomium
 - GLFW3
 - GLEW
 - GLM
