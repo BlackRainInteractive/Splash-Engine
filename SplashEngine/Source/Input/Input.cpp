@@ -1,5 +1,4 @@
 #include "Input.h"
-#include <iostream>
 #include <GLFW/glfw3.h>
 
 // The Splash Engine Namespace
@@ -63,7 +62,7 @@ namespace se{
 /*============================================================================================================*/
 
 	// Get The Mouse Button Pressed
-	bool Input::GetMousePressed (MOUSE_BUTTON Mouse, INPUT_STATE KeyState){
+	bool Input::GetMouse (MOUSE_BUTTON Mouse, INPUT_STATE KeyState){
 
 		// Check If Key Is Pressed
 		if (Input::mouseStateList [Mouse] == KeyState)

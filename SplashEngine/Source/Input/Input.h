@@ -166,9 +166,9 @@ namespace se{
 		// Constructor / Destructor
 		Input ();
 
-		// Functions
+		// Functions - Getting Input
 		static bool GetKey			 (KEY Key, INPUT_STATE KeyState);
-		static bool GetMousePressed  (MOUSE_BUTTON Button, INPUT_STATE KeyState);
+		static bool GetMouse		 (MOUSE_BUTTON Button, INPUT_STATE KeyState);
 		static glm::vec2 GetMousePos ();
 		static void SetMousePos		 (int X, int Y);
 
