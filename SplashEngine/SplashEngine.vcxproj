@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include;$(SolutionDir)Include/FreeType;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/Lib/Awesomium;$(SolutionDir)Lib/FreeImage;$(SolutionDir)Lib/GLEW;$(SolutionDir)Lib/GLFW;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Lib/assimp;$(SolutionDir)Lib/FMOD;$(SolutionDir)Lib/FreeImage;$(SolutionDir)Lib/GLEW;$(SolutionDir)Lib/GLFW;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Include;$(SolutionDir)Include/FreeType;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/Lib/Awesomium;$(SolutionDir)Lib/FreeImage;$(SolutionDir)Lib/GLEW;$(SolutionDir)Lib/GLFW;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Lib/assimp;$(SolutionDir)Lib/FMOD;$(SolutionDir)Lib/FreeImage;$(SolutionDir)Lib/GLEW;$(SolutionDir)Lib/GLFW;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -57,11 +57,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>awesomium.lib;FreeImage_d.lib;glew32s_d.lib;glfw3_d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimpd.lib;fmodL_vc.lib;FreeImage_d.lib;glew32s_d.lib;glfw3_d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,24 +80,29 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>awesomium.lib;FreeImage.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;fmod_vc.lib;FreeImage.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Example.cpp" />
+    <ClCompile Include="Source\Audio\Player\Player2D.cpp" />
+    <ClCompile Include="Source\Audio\Player\PlayerMusic.cpp" />
     <ClCompile Include="Source\Base\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
-    <ClCompile Include="Source\Rendering\GUI\GUI.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
+    <ClCompile Include="Source\Rendering\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Grid.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Line.cpp" />
@@ -108,12 +116,14 @@
     <ClCompile Include="Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Audio\Player\Player2D.h" />
+    <ClInclude Include="Source\Audio\Player\PlayerMusic.h" />
     <ClInclude Include="Source\Base\GameObject.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Rendering\Camera\Camera.h" />
-    <ClInclude Include="Source\Rendering\GUI\GUI.h" />
     <ClInclude Include="Source\Rendering\Material\Material.h" />
+    <ClInclude Include="Source\Rendering\Mesh\Mesh.h" />
     <ClInclude Include="Source\Rendering\Primitive\Cube.h" />
     <ClInclude Include="Source\Rendering\Primitive\Grid.h" />
     <ClInclude Include="Source\Rendering\Primitive\Line.h" />

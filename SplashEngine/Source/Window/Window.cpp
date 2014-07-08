@@ -1,8 +1,8 @@
 #include "Window.h"
+#include "../Audio/Player/PlayerMusic.h"
 #include "../Input/Input.h"
-#include "../Rendering/GUI/GUI.h"
 #include "../Time/Time.h"
-#include <Awesomium/WebCore.h>
+#include <FMOD/fmod.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -73,9 +73,6 @@ namespace se{
 		// Print OpenGL Version
 		std::cout << "\nUsing OpenGL Version " << glGetString (GL_VERSION) << '\n';
 		std::cout << "OpenGL Vendor - " << glGetString (GL_VENDOR) << "\n\n";
-
-		// Init The Input Class
-		Input::Input ();
 
 		return true;
 	}
@@ -156,8 +153,8 @@ namespace se{
 		glfwSwapBuffers (Window::windowHandle);
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Update Required Classes
-		rendering::GUI::webCore -> Update ();
+		// Update Sound System
+		audio::PlayerMusic::soundSystem -> update ();
 
 		return true;
 	}

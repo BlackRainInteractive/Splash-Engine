@@ -141,27 +141,27 @@ namespace se{
 			Camera::upVec = glm::cross (right, direction);
 
 			// Move Camera Forward
-			if (Input::GetKey  (KEY::KEY_W, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_W))
 				Camera::position += direction * (float) Time::deltaTime * Camera::moveSpeed;
 
 			// Move Camera Back
-			if (Input::GetKey  (KEY::KEY_S, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_S))
 				Camera::position -= direction * (float) Time::deltaTime * Camera::moveSpeed;
 
 			// Strafe Camera Right
-			if (Input::GetKey  (KEY::KEY_D, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_D))
 				Camera::position += right * (float) Time::deltaTime * Camera::moveSpeed;
 
 			// Strafe Camera Left
-			if (Input::GetKey  (KEY::KEY_A, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_A))
 				Camera::position -= right * (float) Time::deltaTime * Camera::moveSpeed;
 
 			// Move Camera Up
-			if (Input::GetKey (KEY::KEY_E, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_E))
 				Camera::position.y += Camera::moveSpeed * (float) Time::deltaTime;
 
 			// Move Camera Down
-			if (Input::GetKey (KEY::KEY_Q, INPUT_STATE::PRESSED_OR_HELD))
+			if (Input::GetKeyPressed (KEY::KEY_Q))
 				Camera::position.y -= Camera::moveSpeed * (float) Time::deltaTime;
 
 			// Set Camera Target

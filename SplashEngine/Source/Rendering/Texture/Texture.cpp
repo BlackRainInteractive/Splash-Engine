@@ -62,8 +62,8 @@ namespace se{
 				BYTE* pixels = FreeImage_GetBits (imageBitmap);
 
 				// Get Width And Height
-				int texWidth  = (int) FreeImage_GetWidth (imageBitmap);
-				int texHeight = (int) FreeImage_GetHeight (imageBitmap);
+				unsigned int texWidth  = FreeImage_GetWidth (imageBitmap);
+				unsigned int texHeight = FreeImage_GetHeight (imageBitmap);
 
 				// Apply Data To Texture
 				glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -148,8 +148,8 @@ namespace se{
 					BYTE* pixels = FreeImage_GetBits (imageBitmap);
 
 					// Get Width And Height
-					int texWidth  = (int) FreeImage_GetWidth (imageBitmap);
-					int texHeight = (int) FreeImage_GetHeight (imageBitmap);
+					unsigned int texWidth  = FreeImage_GetWidth (imageBitmap);
+					unsigned int texHeight = FreeImage_GetHeight (imageBitmap);
 
 					// Set Texture Parameters
 					glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);

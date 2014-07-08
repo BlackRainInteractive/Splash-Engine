@@ -1,7 +1,10 @@
+#include "Audio/Player/Player2D.h"
+#include "Audio/Player/PlayerMusic.h"
 #include "Engine/Engine.h"
 #include "Input/Input.h"
 #include "Rendering/Camera/Camera.h"
 #include "Rendering/Material/Material.h"
+#include "Rendering/Mesh/Mesh.h"
 #include "Rendering/Primitive/Cube.h"
 #include "Rendering/Primitive/Grid.h"
 #include "Rendering/Primitive/Line.h"
@@ -9,7 +12,6 @@
 #include "Rendering/SceneManager/SceneManager.h"
 #include "Rendering/Skybox/Skybox.h"
 #include "Rendering/Texture/Texture.h"
-#include "Rendering/GUI/GUI.h"
 #include "Time/Time.h"
 #include "Utility/Display/Display.h"
 #include "Window/Window.h"
@@ -22,14 +24,10 @@ void EngineTest (){
 
 	// Setup Camera
 	se::rendering::Camera camera;
-	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::TARGET);
+	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
 	camera.SetupPerspective (60);
 	camera.SetupFPS (0.6f, 10);
-	camera.Transform (glm::vec3 (0, 1, -2), glm::vec3 (0));
-
-	// Load Skybox Shader
-	//se::rendering::Material matSkybox;
-	//matSkybox.Load (se::DEFAULT_MATERIAL::SKYBOX);
+	camera.Transform (glm::vec3 (0, 1, -10), glm::vec3 (0));
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
@@ -42,15 +40,6 @@ void EngineTest (){
 	// Load Line Shader
 	se::rendering::Material matLine;
 	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE_LINE);
-
-	// Load GUI Shader
-	se::rendering::Material matGUI;
-	matGUI.Load ("Shaders/GUI/GUI.vert", "", "", "", "Shaders/GUI/GUI.frag");
-
-	// Load Skybox
-	//se::rendering::Skybox skybox;
-	//skybox.Load ("TestResources/left.tif", "TestResources/right.tif", "TestResources/down.tif", "TestResources/up.tif", "TestResources/front.tif", "TestResources/back.tif", &matSkybox);
-	//sManager.Add (&skybox);
 
 	// Create Line X Axis
 	se::rendering::Line lineX;
@@ -96,15 +85,8 @@ void EngineTest (){
 	sphere.SetParent (&grid);
 	sManager.Add (&sphere);
 
-	se::rendering::GUI gui;
-	gui.LoadFromURL ("http://peacekeeper.futuremark.com", &matGUI);
-	gui.SetDiscardColour (glm::vec4 (1));
-	sManager.Add (&gui);
-
-	//camera.SetParent (&grid);
-
 	// The Main Render Loop
-	while (se::Window::Render () && !se::Input::GetKey (se::KEY::KEY_ESCAPE, se::INPUT_STATE::PRESSED)){
+	while (se::Window::Render () && !se::Input::GetKeyPressed (se::KEY::KEY_ESCAPE)){
 
 		// Update The Camera
 		camera.Update ();
@@ -115,7 +97,7 @@ void EngineTest (){
 		cube3.Transform (cube2.position, glm::vec3 (0, (float) se::Time::GetElapsedTime () * 100, 0));
 
 		// Rotate The Grid
-		if (se::Input::GetKey (se::KEY::KEY_ENTER, se::INPUT_STATE::PRESSED_OR_HELD)){
+		if (se::Input::GetKeyPressed (se::KEY::KEY_ENTER)){
 
 			grid.Transform (grid.position, glm::vec3 (grid.rotation.x - (float) se::Time::deltaTime * 25, 
 													  grid.rotation.y - (float) se::Time::deltaTime * 50, 
@@ -134,7 +116,7 @@ int main (){
 
 	// Create Window And Hide Cursor
 	se::Window::Create (1280, 720, "Splash Engine | Revision 3", false);
-	//se::Window::ShowCursor (false);
+	se::Window::ShowCursor (false);
 
 	// Center Cursor
 	se::Input::SetMousePos (se::Window::width / 2, se::Window::height / 2);

@@ -23,7 +23,7 @@ void main (){
 
 	//else{
 
-		FragColour.rgb = texture (diffuseTexture, fragUV).rgb;
-		FragColour.a = 1;
+		FragColour = texture (diffuseTexture, fragUV);
+		//FragColour.a = 1;
 	//}
 }
