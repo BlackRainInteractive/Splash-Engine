@@ -1,10 +1,6 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <map>
-
-// Forward Declare GLFW Window
-struct GLFWwindow;
 
 // The Splash Engine Namespace
 namespace se{
@@ -148,40 +144,14 @@ namespace se{
 
 /*============================================================================================================*/
 
-	// The Input State Enum
-	enum INPUT_STATE{
-
-		PRESSED			= 1,
-		RELEASED		= 0,
-		REPEAT			= 2,
-		PRESSED_OR_HELD = 3
-	};
-
-/*============================================================================================================*/
-
 	// The Input Class
 	class Input{
 	public:
 
-		// Constructor / Destructor
-		Input ();
-
-		// Functions - Getting Input
-		static bool GetKey			 (KEY Key, INPUT_STATE KeyState);
-		static bool GetMouse		 (MOUSE_BUTTON Button, INPUT_STATE KeyState);
+		// Functions - Get Key
+		static bool GetKeyPressed    (KEY Key);
+		static bool GetMousePressed  (MOUSE_BUTTON Button);
 		static glm::vec2 GetMousePos ();
 		static void SetMousePos		 (int X, int Y);
-
-	private:
-
-		// Functions - Callbacks
-		static void KeyCallbackFunc			(GLFWwindow* Window, int Key, int ScanCode, int Action, int Mods);
-		static void MouseButtonCallbackFunc (GLFWwindow* Window, int Key, int Action, int Mods);
-		static void MousePosCallbackFunc    (GLFWwindow* Window, double XPos, double YPos);
-
-		// Variables - Input States
-		static std::map <int, INPUT_STATE> keyStateList;
-		static std::map <int, INPUT_STATE> mouseStateList;
-		static glm::vec2 mousePos;
 	};
 }
