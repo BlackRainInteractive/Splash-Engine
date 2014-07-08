@@ -13,9 +13,9 @@ namespace se{
 		class Camera;
 		class Cube;
 		class Grid;
-		class GUI;
 		class Line;
 		class Material;
+		class Mesh;
 		class Skybox;
 		class Sphere;
 		class Texture;
@@ -33,8 +33,8 @@ namespace se{
 			// Functions - Adding Objects
 			void Add (Cube* Object);
 			void Add (Grid* Object);
-			void Add (GUI* Object);
 			void Add (Line* Object);
+			void Add (Mesh* Object);
 			void Add (Skybox* Object);
 			void Add (Sphere* Object);
 
@@ -44,8 +44,8 @@ namespace se{
 			// Variables - Objects
 			std::vector <Cube*> cubeList;
 			std::vector <Grid*> gridList;
-			std::vector <GUI*> guiList;
 			std::vector <Line*> lineList;
+			std::vector <Mesh*> meshList;
 			std::vector <Skybox*> skyboxList;
 			std::vector <Sphere*> sphereList;
 
@@ -59,6 +59,7 @@ namespace se{
 
 			// Functions - Drawing
 			void DrawGBuffer (Material* Material);
+			void DrawMeshes (Camera* Camera);
 			void DrawPrimitives (Camera* Camera);
 			void DrawSkybox (Camera* Camera);
 		};

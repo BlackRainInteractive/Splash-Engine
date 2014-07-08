@@ -1,8 +1,8 @@
 #include "SceneManager.h"
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
-#include "../GUI/GUI.h"
 #include "../Material/Material.h"
+#include "../Mesh/Mesh.h"
 #include "../Primitive/Cube.h"
 #include "../Primitive/Grid.h"
 #include "../Primitive/Line.h"
@@ -143,16 +143,16 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Add GUI
-		void SceneManager::Add (GUI* Object){
-			SceneManager::guiList.push_back (Object);
+		// Add Line
+		void SceneManager::Add (Line* Object){
+			SceneManager::lineList.push_back (Object);
 		}
 
 /*============================================================================================================*/
 
-		// Add Line
-		void SceneManager::Add (Line* Object){
-			SceneManager::lineList.push_back (Object);
+		// Add Mesh
+		void SceneManager::Add (Mesh* Object){
+			SceneManager::meshList.push_back (Object);
 		}
 
 /*============================================================================================================*/
@@ -180,24 +180,15 @@ namespace se{
 
 			// Draw All Objects
 			SceneManager::DrawSkybox (Camera);
+			SceneManager::DrawMeshes (Camera);
 			SceneManager::DrawPrimitives (Camera);
 
 			// Unbind FBO
 			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);
 
 			// Draw Fullscreen Plane
-			SceneManager::DrawGBuffer (PostPass);
-
-			// Disable Depth Testing
 			glDisable (GL_DEPTH_TEST);
-			glEnable (GL_BLEND);
-
-			// Draw GUI
-			for (auto object : SceneManager::guiList)
-				object -> Draw ();
-
-			// Enable Depth Testing
-			glDisable (GL_BLEND);
+			SceneManager::DrawGBuffer (PostPass);
 			glEnable (GL_DEPTH_TEST);
 		}
 
@@ -224,6 +215,15 @@ namespace se{
 
 			// Unbind The Material
 			Material -> Bind (false);
+		}
+
+/*============================================================================================================*/
+
+		// Draw All Meshes
+		void SceneManager::DrawMeshes (Camera* Camera){
+
+			for (auto object : SceneManager::meshList)
+				object -> Draw (Camera);
 		}
 
 /*============================================================================================================*/
