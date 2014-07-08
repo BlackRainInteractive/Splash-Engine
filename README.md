@@ -17,7 +17,8 @@ The dependencies are listed below.
 Required Dependencies
 --------------------
 
-- Awesomium
+- Assimp
+- FMOD Studio
 - GLFW3
 - GLEW
 - GLM
