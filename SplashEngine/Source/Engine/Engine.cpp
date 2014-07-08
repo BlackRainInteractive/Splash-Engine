@@ -1,7 +1,7 @@
 #include "Engine.h"
-#include "../Rendering/GUI/GUI.h"
+#include "../Audio/Player/PlayerMusic.h"
 #include "../Window/Window.h"
-#include <Awesomium/WebCore.h>
+#include <FMOD/fmod.hpp>
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -23,8 +23,8 @@ namespace se{
 
 		std::cout << "\nInitializing Libraries... ";
 
-		// Init Awesomium
-		if (!Engine::InitAwesomium ())
+		// Init FMOD
+		if (!Engine::InitFMOD ())
 			return false;
 
 		// Init GLFW
@@ -42,8 +42,9 @@ namespace se{
 	// Shut Down The Engine
 	void Engine::ShutDown (){
 
-		// Shut Down Awesomium
-		Awesomium::WebCore::Shutdown ();
+		// Shut Down FMOD
+		audio::PlayerMusic::soundSystem -> close ();
+		audio::PlayerMusic::soundSystem -> release ();
 
 		// Shut Down GLFW
 		glfwDestroyWindow (Window::windowHandle);
@@ -54,23 +55,33 @@ namespace se{
 /*------PRIVATE FUNCTIONS-------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-	// Initialize Awesomium
-	bool Engine::InitAwesomium (){
+	// Intialize FMOD
+	bool Engine::InitFMOD (){
 
-		// Init Awesomium
-		rendering::GUI::webCore = Awesomium::WebCore::Initialize (Awesomium::WebConfig ());
+		// Create FMOD System
+		audio::PlayerMusic::soundSystem = nullptr;
+		FMOD_RESULT result = FMOD::System_Create (&audio::PlayerMusic::soundSystem);
 
-		// Check If Web Core Was Created
-		if (!rendering::GUI::webCore){
+		// Check For Errors
+		if (result != FMOD_OK){
 
-			// Print Error
 			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not initialize Awesomium.\n";
-
+			std::cout << "ERROR: Could not initialize FMOD.\n";
 			return false;
 		}
 
-		// Return True
+		// Init FMOD
+		result = audio::PlayerMusic::soundSystem -> init (512, FMOD_INIT_NORMAL, nullptr);
+
+		// Check For Errors
+		if (result != FMOD_OK){
+
+			std::cout << "Failed\n";
+			std::cout << "ERROR: Could not initialize FMOD.\n";
+			return false;
+		}
+
+		// Return Success
 		return true;
 	}
 
@@ -85,7 +96,6 @@ namespace se{
 			// Print Error
 			std::cout << "Failed\n";
 			std::cout << "ERROR: Could not initialize GLFW.\n";
-
 			return false;
 		}
 
