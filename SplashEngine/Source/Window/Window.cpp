@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Window.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #include "Window.h"
 #include "../Audio/Player/PlayerMusic.h"
 #include "../Input/Input.h"
@@ -6,7 +13,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include <stdexcept>
 
 // The Splash Engine Namespace
 namespace se{

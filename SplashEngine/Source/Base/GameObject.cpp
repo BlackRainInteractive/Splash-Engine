@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : GameObject.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #define GLM_FORCE_RADIANS
 
 #include "GameObject.h"

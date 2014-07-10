@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : SceneManager.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #include "SceneManager.h"
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"

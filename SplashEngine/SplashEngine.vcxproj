@@ -43,6 +43,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Lib/assimp;$(SolutionDir)Lib/FMOD;$(SolutionDir)Lib/FreeImage;$(SolutionDir)Lib/GLEW;$(SolutionDir)Lib/GLFW;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -60,12 +61,20 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>assimpd.lib;fmodL_vc.lib;FreeImage_d.lib;glew32s_d.lib;glfw3_d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>assimpd.lib;fmodL_vc.lib;FreeImage_d.lib;glew32s_d.lib;glfw3_d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -82,6 +91,8 @@
       <AssemblerOutput>NoListing</AssemblerOutput>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,15 +103,26 @@
       <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <Lib>
+      <AdditionalDependencies>assimp.lib;fmod_vc.lib;FreeImage.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Audio\Player\Player2D.cpp" />
     <ClCompile Include="Source\Audio\Player\PlayerMusic.cpp" />
     <ClCompile Include="Source\Base\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
+    <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
+    <ClCompile Include="Source\Rendering\Camera\CameraFreeLook.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
     <ClCompile Include="Source\Rendering\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
@@ -116,11 +138,16 @@
     <ClCompile Include="Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Rendering\Camera\CameraFreeLook.h" />
+    <ClInclude Include="Source\seAudio.h" />
     <ClInclude Include="Source\Audio\Player\Player2D.h" />
     <ClInclude Include="Source\Audio\Player\PlayerMusic.h" />
+    <ClInclude Include="Source\seBase.h" />
     <ClInclude Include="Source\Base\GameObject.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
+    <ClInclude Include="Source\seInput.h" />
     <ClInclude Include="Source\Input\Input.h" />
+    <ClInclude Include="Source\seRendering.h" />
     <ClInclude Include="Source\Rendering\Camera\Camera.h" />
     <ClInclude Include="Source\Rendering\Material\Material.h" />
     <ClInclude Include="Source\Rendering\Mesh\Mesh.h" />
@@ -131,7 +158,9 @@
     <ClInclude Include="Source\Rendering\SceneManager\SceneManager.h" />
     <ClInclude Include="Source\Rendering\Skybox\Skybox.h" />
     <ClInclude Include="Source\Rendering\Texture\Texture.h" />
+    <ClInclude Include="Source\seTime.h" />
     <ClInclude Include="Source\Time\Time.h" />
+    <ClInclude Include="Source\seUtility.h" />
     <ClInclude Include="Source\Utility\Display\Display.h" />
     <ClInclude Include="Source\Utility\IniParser\IniParser.h" />
     <ClInclude Include="Source\Window\Window.h" />

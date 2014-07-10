@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Player2D.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #include "Player2D.h"
 #include <FMOD/fmod.hpp>
 #include <iostream>

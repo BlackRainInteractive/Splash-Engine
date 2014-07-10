@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Engine.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #include "Engine.h"
 #include "../Audio/Player/PlayerMusic.h"
 #include "../Window/Window.h"

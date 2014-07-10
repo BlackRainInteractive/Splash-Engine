@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Mesh.h
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #pragma once
 
 #include "../../Base/GameObject.h"
@@ -51,7 +58,7 @@ namespace se{
 		public:
 
 			// Constructor / Destructor
-			~Mesh ();
+			virtual ~Mesh ();
 
 			// Functions - Mesh Loading
 			bool Load (glm::vec3 Position, std::string MeshPath, Material* Material);

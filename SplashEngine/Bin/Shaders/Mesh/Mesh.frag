@@ -19,7 +19,7 @@ uniform sampler2D DiffuseTexture;
 // The Main Function
 void main (){
 
-	DiffuseOut  = texture (DiffuseTexture, vUV1).xyz;
+	DiffuseOut  = texture (DiffuseTexture, vUV1, 0).xyz;
 	NormalOut   = vNormals;
 	PositionOut = vWorldPos.xyz;
 }
