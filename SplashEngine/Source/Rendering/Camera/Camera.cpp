@@ -1,8 +1,13 @@
+//============================================================================
+// Name        : Camera.cpp
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #define GLM_FORCE_RADIANS
 
 #include "Camera.h"
-#include "../../Input/Input.h"
-#include "../../Time/Time.h"
 #include "../../Window/Window.h"
 
 // The Splash Engine Namespace
@@ -30,9 +35,7 @@ namespace se{
 /*============================================================================================================*/
 
 		// Setup The Camera
-		void Camera::SetupCamera (CAMERA_TYPE CameraType, CAMERA_MODE CameraMode){
-
-			Camera::cameraType = CameraType;
+		void Camera::SetupCamera (CAMERA_MODE CameraMode){
 			Camera::cameraMode = CameraMode;
 		}
 
@@ -64,45 +67,23 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Setup Target Mode
-		void Camera::SetupTarget (glm::vec3 Target){
-			Camera::target = Target;
-		}
-
-/*============================================================================================================*/
-
-		// Setup FPS Mode
-		void Camera::SetupFPS (float LookSpeed, float MoveSpeed){
-
-			// Set The Camera Variables
-			Camera::lookSpeed = LookSpeed;
-			Camera::moveSpeed = MoveSpeed;
-		}
-
-/*============================================================================================================*/
-
 		// Update The Camera
 		void Camera::Update (){
 
 			// Calc Projection Matrix
-			switch (Camera::cameraType){
+			switch (Camera::cameraMode){
 
-			case CAMERA_TYPE::ORTHO:
+			case CAMERA_MODE::ORTHO:
 					Camera::pMatrix = glm::ortho (Camera::left, Camera::right, Camera::bottom, Camera::top, Camera::nearZ, Camera::farZ);
 					break;
 
-			case CAMERA_TYPE::PERSPECTIVE:
+			case CAMERA_MODE::PERSPECTIVE:
 					Camera::pMatrix = glm::perspective (glm::radians (Camera::fov), Camera::aspectRatio, Camera::nearZ, Camera::farZ);
 					break;
 			}
 
-			// Calc Camera Mode
-			switch (Camera::cameraMode){
-
-			case CAMERA_MODE::FPS:
-				Camera::UpdateFPS ();
-				break;
-			}
+			// Calc Camera View
+			Camera::UpdateView ();
 
 			// Calc View Matrix
 			if (Camera::parent != nullptr)
@@ -113,56 +94,59 @@ namespace se{
 		}
 
 /*============================================================================================================*/
-/*------PRIVATE FUNCTIONS-------------------------------------------------------------------------------------*/
+/*------PROTECTED FUNCTIONS-----------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-		// Update The FPS Camera
-		void Camera::UpdateFPS (){
+		// Update The Camera View
+		void Camera::UpdateView (){
 
 			// Get Mouse Position, Then Reset It
-			glm::vec2 mousePos = Input::GetMousePos ();
-			Input::SetMousePos (Window::width / 2, Window::height / 2);
+			//glm::vec2 mousePos = Input::GetMousePos ();
+			//Input::SetMousePos (Window::width / 2, Window::height / 2);
 
-			// Calc Camera Rotation
-			Camera::rotation.x += (Camera::lookSpeed * float (Window::height * 0.5f - mousePos.y)) * (float) Time::deltaTime;
-			Camera::rotation.y += (Camera::lookSpeed * float (Window::width  * 0.5f - mousePos.x)) * (float) Time::deltaTime;
+			//// Calc Camera Rotation
+			//Camera::rotation.x += (Camera::lookSpeed * float (Window::height * 0.5f - mousePos.y)) * (float) Time::deltaTime;
+			//Camera::rotation.y += (Camera::lookSpeed * float (Window::width  * 0.5f - mousePos.x)) * (float) Time::deltaTime;
+
+			// Convert Rotation From Degrees To Radians
+			glm::vec3 camRot = glm::radians (Camera::rotation);
 
 			// Convert Rotation To Cartesian Coordinates
-			glm::vec3 direction (cosf (Camera::rotation.x) * sinf (Camera::rotation.y),
-								 sinf (Camera::rotation.x),
-								 cosf (Camera::rotation.x) * cosf (Camera::rotation.y));
+			glm::vec3 direction (cosf (camRot.x) * sinf (camRot.y),
+								 sinf (camRot.x),
+								 cosf (camRot.x) * cosf (camRot.y));
 
 			// Get Right Vector
-			glm::vec3 right (sinf (Camera::rotation.y - 3.14f * 0.5f),
+			glm::vec3 right (sinf (camRot.y - 3.14f * 0.5f),
 							 0,
-							 cosf (Camera::rotation.y - 3.14f * 0.5f));
+							 cosf (camRot.y - 3.14f * 0.5f));
 
 			// Get Up Vector
 			Camera::upVec = glm::cross (right, direction);
 
 			// Move Camera Forward
-			if (Input::GetKeyPressed (KEY::KEY_W))
-				Camera::position += direction * (float) Time::deltaTime * Camera::moveSpeed;
+			//if (Input::GetKeyPressed (KEY::KEY_W))
+			//	Camera::position += direction * (float) Time::deltaTime * Camera::moveSpeed;
 
-			// Move Camera Back
-			if (Input::GetKeyPressed (KEY::KEY_S))
-				Camera::position -= direction * (float) Time::deltaTime * Camera::moveSpeed;
+			//// Move Camera Back
+			//if (Input::GetKeyPressed (KEY::KEY_S))
+			//	Camera::position -= direction * (float) Time::deltaTime * Camera::moveSpeed;
 
-			// Strafe Camera Right
-			if (Input::GetKeyPressed (KEY::KEY_D))
-				Camera::position += right * (float) Time::deltaTime * Camera::moveSpeed;
+			//// Strafe Camera Right
+			//if (Input::GetKeyPressed (KEY::KEY_D))
+			//	Camera::position += right * (float) Time::deltaTime * Camera::moveSpeed;
 
-			// Strafe Camera Left
-			if (Input::GetKeyPressed (KEY::KEY_A))
-				Camera::position -= right * (float) Time::deltaTime * Camera::moveSpeed;
+			//// Strafe Camera Left
+			//if (Input::GetKeyPressed (KEY::KEY_A))
+			//	Camera::position -= right * (float) Time::deltaTime * Camera::moveSpeed;
 
-			// Move Camera Up
-			if (Input::GetKeyPressed (KEY::KEY_E))
-				Camera::position.y += Camera::moveSpeed * (float) Time::deltaTime;
+			//// Move Camera Up
+			//if (Input::GetKeyPressed (KEY::KEY_E))
+			//	Camera::position.y += Camera::moveSpeed * (float) Time::deltaTime;
 
-			// Move Camera Down
-			if (Input::GetKeyPressed (KEY::KEY_Q))
-				Camera::position.y -= Camera::moveSpeed * (float) Time::deltaTime;
+			//// Move Camera Down
+			//if (Input::GetKeyPressed (KEY::KEY_Q))
+			//	Camera::position.y -= Camera::moveSpeed * (float) Time::deltaTime;
 
 			// Set Camera Target
 			Camera::target = (Camera::position + direction);

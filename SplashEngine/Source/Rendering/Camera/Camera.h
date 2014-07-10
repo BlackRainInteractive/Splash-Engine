@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Camera.h
+// Author      : Kyle Finlay
+// Copyright   : 2014 by Black Rain Interactive
+// Description : This file is a part of Splash Engine.
+//============================================================================
+
 #pragma once
 
 #include "../../Base/GameObject.h"
@@ -5,20 +12,11 @@
 // The Splash Engine Namespace
 namespace se{
 
-	// The Camera Type Enum
-	enum CAMERA_TYPE{
-
-		ORTHO		= 0,
-		PERSPECTIVE = 1
-	};
-
-/*============================================================================================================*/
-
 	// The Camera Mode Enum
 	enum CAMERA_MODE{
 
-		TARGET = 0,
-		FPS	   = 1
+		ORTHO		= 0,
+		PERSPECTIVE = 1
 	};
 
 /*============================================================================================================*/
@@ -34,14 +32,12 @@ namespace se{
 			Camera ();
 
 			// Functions - Setup
-			void SetupCamera	  (CAMERA_TYPE CameraType, CAMERA_MODE CameraMode);
-			void SetupOrtho		  (float Left, float Right, float Top, float Bottom, float Near = 0.1f, float Far = 100);
-			void SetupPerspective (float FOV = 65, float Near = 0.1f, float Far = 100);
-			void SetupTarget	  (glm::vec3 Target);
-			void SetupFPS		  (float LookSpeed, float MoveSpeed);
+			virtual void SetupCamera	  (CAMERA_MODE CameraMode);
+			virtual void SetupOrtho		  (float Left, float Right, float Top, float Bottom, float Near = 0.1f, float Far = 100);
+			virtual void SetupPerspective (float FOV = 65, float Near = 0.1f, float Far = 100);
 
 			// Functions - Updating
-			void Update ();
+			virtual void Update ();
 
 			// Variables - Transform
 			glm::mat4 vMatrix;
@@ -54,17 +50,13 @@ namespace se{
 			float fov, aspectRatio;
 			float left, right, top, bottom;
 
-			// Variables - FPS
-			float lookSpeed, moveSpeed;
-
 			// Variables - Misc
-			CAMERA_TYPE cameraType;
 			CAMERA_MODE cameraMode;
 
-		private:
+		protected:
 
 			// Functions - Updating
-			void UpdateFPS ();
+			virtual void UpdateView ();
 		};
 	}
 }
