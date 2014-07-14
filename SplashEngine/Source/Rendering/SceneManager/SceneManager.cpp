@@ -6,14 +6,10 @@
 //============================================================================
 
 #include "SceneManager.h"
+#include "../../Base/Renderable.h"
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
-#include "../Mesh/Mesh.h"
-#include "../Primitive/Cube.h"
-#include "../Primitive/Grid.h"
-#include "../Primitive/Line.h"
-#include "../Primitive/Sphere.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
@@ -136,34 +132,6 @@ namespace se{
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-		// Add Cube
-		void SceneManager::Add (Cube* Object){
-			SceneManager::cubeList.push_back (Object);
-		}
-
-/*============================================================================================================*/
-
-		// Add Grid
-		void SceneManager::Add (Grid* Object){
-			SceneManager::gridList.push_back (Object);
-		}
-
-/*============================================================================================================*/
-
-		// Add Line
-		void SceneManager::Add (Line* Object){
-			SceneManager::lineList.push_back (Object);
-		}
-
-/*============================================================================================================*/
-
-		// Add Mesh
-		void SceneManager::Add (Mesh* Object){
-			SceneManager::meshList.push_back (Object);
-		}
-
-/*============================================================================================================*/
-
 		// Add Skybox
 		void SceneManager::Add (Skybox* Object){
 			SceneManager::skyboxList.push_back (Object);
@@ -171,9 +139,43 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Add Sphere
-		void SceneManager::Add (Sphere* Object){
-			SceneManager::sphereList.push_back (Object);
+		// Add Renderable
+		void SceneManager::Add (base::Renderable* Object){
+			SceneManager::renderableList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
+		// Remove Skybox
+		void SceneManager::Remove (Skybox* Object){
+
+			// Loop Through Elements
+			for (auto iter = SceneManager::skyboxList.begin (); iter != SceneManager::skyboxList.end (); ++iter){
+
+				// Check Pointer Value
+				if (*iter == Object){
+
+					SceneManager::skyboxList.erase (iter);
+					break;
+				}
+			}
+		}
+
+/*============================================================================================================*/
+
+		// Remove Renderable
+		void SceneManager::Remove (base::Renderable* Object){
+
+			// Loop Through Elements
+			for (auto iter = SceneManager::renderableList.begin (); iter != SceneManager::renderableList.end (); ++iter){
+
+				// Check Pointer Value
+				if (*iter == Object){
+
+					SceneManager::renderableList.erase (iter);
+					break;
+				}
+			}
 		}
 
 /*============================================================================================================*/
@@ -187,8 +189,7 @@ namespace se{
 
 			// Draw All Objects
 			SceneManager::DrawSkybox (Camera);
-			SceneManager::DrawMeshes (Camera);
-			SceneManager::DrawPrimitives (Camera);
+			SceneManager::DrawRenderables (Camera);
 
 			// Unbind FBO
 			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);
@@ -226,37 +227,6 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Draw All Meshes
-		void SceneManager::DrawMeshes (Camera* Camera){
-
-			for (auto object : SceneManager::meshList)
-				object -> Draw (Camera);
-		}
-
-/*============================================================================================================*/
-
-		// Draw All Primitives
-		void SceneManager::DrawPrimitives (Camera* Camera){
-
-			// Draw Cubes
-			for (auto object : SceneManager::cubeList)
-				object -> Draw (Camera);
-
-			// Draw Grids
-			for (auto object : SceneManager::gridList)
-				object -> Draw (Camera);
-
-			// Draw Lines
-			for (auto object : SceneManager::lineList)
-				object -> Draw (Camera);
-
-			// Draw Spheres
-			for (auto object : SceneManager::sphereList)
-				object -> Draw (Camera);
-		}
-
-/*============================================================================================================*/
-
 		// Draw All Skyboxes
 		void SceneManager::DrawSkybox (Camera* Camera){
 
@@ -272,6 +242,16 @@ namespace se{
 
 				// Enable Depth Testing
 				glEnable (GL_DEPTH_TEST);
+			}
+		}
+
+/*============================================================================================================*/
+
+		// Draw Renderables
+		void SceneManager::DrawRenderables (Camera* Camera){
+
+			for (auto object : SceneManager::renderableList){
+				object -> Draw (Camera);
 			}
 		}
 

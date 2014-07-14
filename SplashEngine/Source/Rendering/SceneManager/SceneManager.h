@@ -13,6 +13,13 @@
 // The Splash Engine Namespace
 namespace se{
 
+	// Forward Declare Renderable Class
+	namespace base{
+		class Renderable;
+	}
+
+/*============================================================================================================*/
+
 	// The Rendering Namespace
 	namespace rendering{
 
@@ -38,23 +45,19 @@ namespace se{
 			virtual ~SceneManager ();
 
 			// Functions - Adding Objects
-			void Add (Cube* Object);
-			void Add (Grid* Object);
-			void Add (Line* Object);
-			void Add (Mesh* Object);
 			void Add (Skybox* Object);
-			void Add (Sphere* Object);
+			void Add (base::Renderable* Object);
+
+			// Functions - Removing Objects
+			void Remove (Skybox* Object);
+			void Remove (base::Renderable* Object);
 
 			// Functions - Drawing
 			void DrawAll (Camera* Camera, Material* PostPass);
 
 			// Variables - Objects
-			std::vector <Cube*> cubeList;
-			std::vector <Grid*> gridList;
-			std::vector <Line*> lineList;
-			std::vector <Mesh*> meshList;
 			std::vector <Skybox*> skyboxList;
-			std::vector <Sphere*> sphereList;
+			std::vector <base::Renderable*> renderableList;
 
 			// Variables - GBuffer
 			std::shared_ptr <Texture> textureGBuffer;
@@ -66,9 +69,8 @@ namespace se{
 
 			// Functions - Drawing
 			void DrawGBuffer (Material* Material);
-			void DrawMeshes (Camera* Camera);
-			void DrawPrimitives (Camera* Camera);
 			void DrawSkybox (Camera* Camera);
+			void DrawRenderables (Camera* Camera);
 		};
 	}
 }
