@@ -1,21 +1,7 @@
-#include "Audio/Player/Player2D.h"
-#include "Audio/Player/PlayerMusic.h"
-#include "Engine/Engine.h"
-#include "Input/Input.h"
-#include "Rendering/Camera/Camera.h"
-#include "Rendering/Material/Material.h"
-#include "Rendering/Mesh/Mesh.h"
-#include "Rendering/Primitive/Cube.h"
-#include "Rendering/Primitive/Grid.h"
-#include "Rendering/Primitive/Line.h"
-#include "Rendering/Primitive/Sphere.h"
-#include "Rendering/SceneManager/SceneManager.h"
-#include "Rendering/Skybox/Skybox.h"
-#include "Rendering/Texture/Texture.h"
-#include "Time/Time.h"
-#include "Utility/Display/Display.h"
-#include "Window/Window.h"
-#include <iostream>
+#include "seBase.h"
+#include "seInput.h"
+#include "seRendering.h"
+#include "seTime.h"
 
 void EngineTest (){
 
@@ -23,11 +9,10 @@ void EngineTest (){
 	se::rendering::SceneManager sManager;
 
 	// Setup Camera
-	se::rendering::Camera camera;
-	camera.SetupCamera (se::CAMERA_TYPE::PERSPECTIVE, se::CAMERA_MODE::FPS);
+	se::rendering::CameraFly camera;
+	camera.SetupCamera (se::CAMERA_MODE::PERSPECTIVE, 5, 50);
 	camera.SetupPerspective (60);
-	camera.SetupFPS (0.6f, 10);
-	camera.Transform (glm::vec3 (0, 1, -10), glm::vec3 (0));
+	camera.Transform (glm::vec3 (0, 1, -4.25f), glm::vec3 (0));
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
@@ -40,6 +25,10 @@ void EngineTest (){
 	// Load Line Shader
 	se::rendering::Material matLine;
 	matLine.Load (se::DEFAULT_MATERIAL::PRIMITIVE_LINE);
+
+	// Load Mesh Shader
+	se::rendering::Material matMesh;
+	matMesh.Load ("Shaders/Mesh/Mesh.vert", "", "", "", "Shaders/Mesh/Mesh.frag");
 
 	// Create Line X Axis
 	se::rendering::Line lineX;
