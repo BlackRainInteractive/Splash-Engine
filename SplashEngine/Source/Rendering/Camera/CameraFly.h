@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : CameraFreeLook.h
+// Name        : CameraFly.h
 // Author      : Kyle Finlay
 // Copyright   : 2014 by Black Rain Interactive
 // Description : This file is a part of Splash Engine.
@@ -15,8 +15,8 @@ namespace se{
 	// The Rendering Namespace
 	namespace rendering{
 
-		// The Free Look Camera Class
-		class CameraFreeLook : public Camera{
+		// The Fly Camera Class
+		class CameraFly : public Camera{
 		public:
 
 			// Functions - Setup
