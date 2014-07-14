@@ -7,7 +7,7 @@
 //============================================================================
 
 #include "Rendering/Camera/Camera.h"
-#include "Rendering/Camera/CameraFreeLook.h"
+#include "Rendering/Camera/CameraFly.h"
 #include "Rendering/Material/Material.h"
 #include "Rendering/Mesh/Mesh.h"
 #include "Rendering/Primitive/Cube.h"

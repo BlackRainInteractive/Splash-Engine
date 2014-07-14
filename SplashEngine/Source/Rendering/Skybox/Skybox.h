@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../../Base/GameObject.h"
+#include "../../Base/Renderable.h"
 #include <memory>
 #include <string>
 
@@ -17,15 +17,14 @@ namespace se{
 	// The Rendering Namespace
 	namespace rendering{
 
-		// Forward Declare Material, Texture, And Camera Class
-		class Material;
-		class Texture;
+		// Forward Declare Rendering Classes
 		class Camera;
+		class Texture;
 
 /*============================================================================================================*/
 
 		// The Skybox Class
-		class Skybox : public base::GameObject{
+		class Skybox : public base::Renderable{
 		public:
 
 			// Constructor / Destructor
@@ -45,7 +44,6 @@ namespace se{
 
 			// Variables - Rendering
 			std::shared_ptr <Texture> texture;
-			Material* material;
 		};
 	}
 }

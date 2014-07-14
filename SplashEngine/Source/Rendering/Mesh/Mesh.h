@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../../Base/GameObject.h"
+#include "../../Base/Renderable.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -20,7 +20,6 @@ namespace se{
 
 		// Forward Declare Rendering Classes
 		class Camera;
-		class Material;
 		class Texture;
 
 /*============================================================================================================*/
@@ -54,7 +53,7 @@ namespace se{
 /*============================================================================================================*/
 
 		// The Mesh Class
-		class Mesh : public base::GameObject{
+		class Mesh : public base::Renderable{
 		public:
 
 			// Constructor / Destructor
@@ -64,10 +63,9 @@ namespace se{
 			bool Load (glm::vec3 Position, std::string MeshPath, Material* Material);
 
 			// Functions - Rendering
-			void Draw (Camera* Camera);
+			virtual void Draw (Camera* Camera);
 
 			// Variables
-			Material* material;
 			std::vector <MeshData> meshData;
 
 		private:

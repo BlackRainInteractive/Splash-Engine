@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../../Base/GameObject.h"
+#include "../../Base/Renderable.h"
 #include <vector>
 
 // The Splash Engine Namespace
@@ -16,14 +16,13 @@ namespace se{
 	// The Rendering Namespace
 	namespace rendering{
 
-		// Forward Declare Camera and Material Class
+		// Forward Declare Camera Class
 		class Camera;
-		class Material;
 
 /*============================================================================================================*/
 
 		// The Sphere Class
-		class Sphere : public base::GameObject{
+		class Sphere : public base::Renderable{
 		public:
 
 			// Constructor / Destructor
@@ -31,7 +30,7 @@ namespace se{
 
 			// Functions
 			bool Create (glm::vec3 Position, float Radius, int Slices, int Stacks, glm::vec3 Colour, Material* Material);
-			void Draw (Camera* Camera);
+			virtual void Draw (Camera* Camera);
 
 			// Variables - Buffers
 			unsigned int arrayBuffer;
@@ -43,7 +42,6 @@ namespace se{
 			std::vector <unsigned int> indexBufferData;
 
 			// Variables - Misc
-			Material* material;
 			glm::vec3 colour;
 		};
 	}

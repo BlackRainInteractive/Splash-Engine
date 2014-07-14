@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "../../Base/Renderable.h"
 #include <glm/glm.hpp>
 
 // The Splash Engine Namespace
@@ -17,12 +18,11 @@ namespace se{
 
 		// Forward Declare Camera and Material Class
 		class Camera;
-		class Material;
 
 /*============================================================================================================*/
 
 		// The Line Class
-		class Line{
+		class Line : public base::Renderable{
 		public:
 
 			// Constructor / Destructor
@@ -38,7 +38,6 @@ namespace se{
 			unsigned int vertexBuffer;
 
 			// Variables - Misc
-			Material* material;
 			glm::vec3 startPos;
 			glm::vec3 endPos;
 			glm::vec3 colour;
