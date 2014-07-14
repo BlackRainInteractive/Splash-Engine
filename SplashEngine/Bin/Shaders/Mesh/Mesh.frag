@@ -15,6 +15,7 @@ in vec4 vWorldPos;
 
 // Uniforms
 uniform sampler2D DiffuseTexture;
+uniform mat4 M;
 
 // The Main Function
 void main (){
