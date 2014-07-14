@@ -122,7 +122,7 @@
     <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
-    <ClCompile Include="Source\Rendering\Camera\CameraFreeLook.cpp" />
+    <ClCompile Include="Source\Rendering\Camera\CameraFly.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
     <ClCompile Include="Source\Rendering\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
@@ -138,7 +138,9 @@
     <ClCompile Include="Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Rendering\Camera\CameraFreeLook.h" />
+    <ClInclude Include="Source\Base\Renderable.h" />
+    <ClInclude Include="Source\Optimization\BatchGroup\BatchGroup.h" />
+    <ClInclude Include="Source\Rendering\Camera\CameraFly.h" />
     <ClInclude Include="Source\seAudio.h" />
     <ClInclude Include="Source\Audio\Player\Player2D.h" />
     <ClInclude Include="Source\Audio\Player\PlayerMusic.h" />
