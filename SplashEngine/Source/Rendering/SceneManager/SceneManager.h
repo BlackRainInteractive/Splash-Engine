@@ -25,13 +25,8 @@ namespace se{
 
 		// Forward Declare Rendering Classes
 		class Camera;
-		class Cube;
-		class Grid;
-		class Line;
 		class Material;
-		class Mesh;
 		class Skybox;
-		class Sphere;
 		class Texture;
 
 /*============================================================================================================*/
