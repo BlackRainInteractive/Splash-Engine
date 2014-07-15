@@ -19,6 +19,8 @@ namespace se{
 		static void CalcFPS ();
 		static void Wait (double WaitTime);
 		static double GetElapsedTime ();
+		static void GetSystemTime (int &Hours, int &Minutes, int &Seconds);
+		static void GetSystemDate (int &Day, int &Month, int &Year);
 
 		// Variables
 		static double deltaTime;

@@ -7,6 +7,7 @@
 
 #include "Time.h"
 #include <GLFW/glfw3.h>
+#include <ctime>
 
 // The Splash Engine Namespace
 namespace se{
@@ -77,5 +78,39 @@ namespace se{
 	// Get The Elapsed Time
 	double Time::GetElapsedTime(){
 		return glfwGetTime ();
+	}
+
+/*============================================================================================================*/
+
+	// Get The Current System Time
+	void Time::GetSystemTime (int &Hours, int &Minutes, int &Seconds){
+
+		// Get Time
+		time_t t = time (0);
+
+		// Create Time Struct
+		tm* sysTime = localtime (&t);
+
+		// Return Time Values
+		Hours   = sysTime -> tm_hour;
+		Minutes = sysTime -> tm_min;
+		Seconds = sysTime -> tm_sec;
+	}
+
+/*============================================================================================================*/
+
+	// Get The Current System Date
+	void Time::GetSystemDate (int &Day, int &Month, int &Year){
+
+		// Get Time
+		time_t t = time (0);
+
+		// Create Time Struct
+		tm* sysTime = localtime (&t);
+
+		// Return Date Values
+		Day   = sysTime -> tm_mday;
+		Month = sysTime -> tm_mon + 1;
+		Year  = sysTime -> tm_year + 1900;
 	}
 }
