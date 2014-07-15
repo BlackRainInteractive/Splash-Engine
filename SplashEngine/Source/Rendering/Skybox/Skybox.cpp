@@ -6,11 +6,11 @@
 //============================================================================
 
 #include "Skybox.h"
+#include "../../Utility/DebugLog/DebugLog.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
-#include <iostream>
 
 // The Splash Engine Namespace
 namespace se{
@@ -95,7 +95,7 @@ namespace se{
 			// Load The Textures
 			if (!Skybox::texture -> Load (PosX, NegX, PosY, NegY, PosZ, NegZ, "DiffuseTexture")){
 
-				std::cout << "ERROR: Could not create the Skybox.\n";
+				utility::DebugLog::WriteLog ("Could not create the Skybox", LOG_TYPE::WARNING);
 				return false;
 			}
 

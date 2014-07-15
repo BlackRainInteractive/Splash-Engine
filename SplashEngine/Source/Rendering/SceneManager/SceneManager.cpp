@@ -7,13 +7,14 @@
 
 #include "SceneManager.h"
 #include "../../Base/Renderable.h"
+#include "../../Optimization/BatchGroup/BatchGroup.h"
+#include "../../Utility/DebugLog/DebugLog.h"
 #include "../../Window/Window.h"
 #include "../Camera/Camera.h"
 #include "../Material/Material.h"
 #include "../Skybox/Skybox.h"
 #include "../Texture/Texture.h"
 #include <GL/glew.h>
-#include <iostream>
 #include <vector>
 
 // The Splash Engine Namespace
@@ -115,7 +116,7 @@ namespace se{
 			GLenum status = glCheckFramebufferStatus (GL_DRAW_FRAMEBUFFER);
 
 			if (status != GL_FRAMEBUFFER_COMPLETE)
-				std::cout << "ERROR: The GBuffer could not be created.\nThis could be a problem.\n";
+				utility::DebugLog::WriteLog ("The GBuffer could not be created", LOG_TYPE::ERROR);
 
 			// Add Textures To Texture Class
 			SceneManager::textureGBuffer -> Load (diffuseTexture, "DiffuseBufferTexture");
@@ -132,13 +133,6 @@ namespace se{
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
 /*============================================================================================================*/
 
-		// Add Skybox
-		void SceneManager::Add (Skybox* Object){
-			SceneManager::skyboxList.push_back (Object);
-		}
-
-/*============================================================================================================*/
-
 		// Add Renderable
 		void SceneManager::Add (base::Renderable* Object){
 			SceneManager::renderableList.push_back (Object);
@@ -146,19 +140,16 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Remove Skybox
-		void SceneManager::Remove (Skybox* Object){
+		// Add Batch Group
+		void SceneManager::Add (optimization::BatchGroup* Object){
+			SceneManager::batchGroupList.push_back (Object);
+		}
 
-			// Loop Through Elements
-			for (auto iter = SceneManager::skyboxList.begin (); iter != SceneManager::skyboxList.end (); ++iter){
+/*============================================================================================================*/
 
-				// Check Pointer Value
-				if (*iter == Object){
-
-					SceneManager::skyboxList.erase (iter);
-					break;
-				}
-			}
+		// Add Skybox
+		void SceneManager::Add (Skybox* Object){
+			SceneManager::skyboxList.push_back (Object);
 		}
 
 /*============================================================================================================*/
@@ -180,6 +171,40 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Remove Batch Group
+		void SceneManager::Remove (optimization::BatchGroup* Object){
+
+			// Loop Through Elements
+			for (auto iter = SceneManager::batchGroupList.begin (); iter != SceneManager::batchGroupList.end (); ++iter){
+
+				// Check Pointer Value
+				if (*iter == Object){
+
+					SceneManager::batchGroupList.erase (iter);
+					break;
+				}
+			}
+		}
+
+/*============================================================================================================*/
+
+		// Remove Skybox
+		void SceneManager::Remove (Skybox* Object){
+
+			// Loop Through Elements
+			for (auto iter = SceneManager::skyboxList.begin (); iter != SceneManager::skyboxList.end (); ++iter){
+
+				// Check Pointer Value
+				if (*iter == Object){
+
+					SceneManager::skyboxList.erase (iter);
+					break;
+				}
+			}
+		}
+
+/*============================================================================================================*/
+
 		// Update And Draw Objects
 		void SceneManager::DrawAll (Camera* Camera, Material* PostPass){
 
@@ -189,6 +214,7 @@ namespace se{
 
 			// Draw All Objects
 			SceneManager::DrawSkybox (Camera);
+			SceneManager::DrawBatchGroups (Camera);
 			SceneManager::DrawRenderables (Camera);
 
 			// Unbind FBO
@@ -247,12 +273,24 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Draw Batch Groups
+		void SceneManager::DrawBatchGroups (Camera* Camera){
+
+			for (auto object : SceneManager::batchGroupList){
+
+				// Check If Group Contains Items
+				if (object -> meshList.size () > 0)
+					object -> Draw (Camera);
+			}
+		}
+
+/*============================================================================================================*/
+
 		// Draw Renderables
 		void SceneManager::DrawRenderables (Camera* Camera){
 
-			for (auto object : SceneManager::renderableList){
+			for (auto object : SceneManager::renderableList)
 				object -> Draw (Camera);
-			}
 		}
 
 /*============================================================================================================*/

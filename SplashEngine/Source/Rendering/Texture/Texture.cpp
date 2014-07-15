@@ -6,10 +6,10 @@
 //============================================================================
 
 #include "Texture.h"
+#include "../../Utility/DebugLog/DebugLog.h"
 #include "../Material/Material.h"
 #include <FreeImage.h>
 #include <GL/glew.h>
-#include <iostream>
 #include <vector>
 
 // The Splash Engine Namespace
@@ -36,7 +36,7 @@ namespace se{
 			// If Still Unknown, Return Error
 			if (imageFormat == FIF_UNKNOWN){
 
-				std::cout << "ERROR: The Texture \"" << TexturePath << "\" could not be loaded.'\n'Unknown file type.\n";
+				utility::DebugLog::WriteLog ("The Texture \"" + TexturePath + "\" could not be loaded. Unknown file type", LOG_TYPE::WARNING);
 				return false;
 			}
 
@@ -47,7 +47,7 @@ namespace se{
 			// If Not Return Error
 			else{
 
-				std::cout << "ERROR: The Texture \"" << TexturePath << "\" could not be loaded.'\n'Format not supported.\n";
+				utility::DebugLog::WriteLog ("The Texture \"" + TexturePath + "\" could not be loaded. Format not supported.", LOG_TYPE::WARNING);
 				return false;
 			}
 
@@ -93,7 +93,7 @@ namespace se{
 			// If Above Fails Return Unknown Error
 			else{
 
-				std::cout << "ERROR: The texture \"" << TexturePath << "\" could not be loaded'\n'Unknown error.\n";
+				utility::DebugLog::WriteLog ("The texture \"" + TexturePath + "\" could not be loaded. Unknown error.", LOG_TYPE::WARNING);
 				return false;
 			}
 		}
@@ -128,7 +128,7 @@ namespace se{
 				// If Still Unknown, Return Error
 				if (imageFormat == FIF_UNKNOWN){
 
-					std::cout << "ERROR: The Texture \"" << texPathList [i] << "\" could not be loaded.\nUnknown file type.\n";
+					utility::DebugLog::WriteLog ("The Texture \"" + texPathList [i] + "\" could not be loaded. Unknown file type", LOG_TYPE::WARNING);
 					return false;
 				}
 
@@ -139,7 +139,7 @@ namespace se{
 				// If Not Return Error
 				else{
 
-					std::cout << "ERROR: The Texture \"" << texPathList [i] << "\" could not be loaded.\nFormat not supported.\n";
+					utility::DebugLog::WriteLog ("The Texture \"" + texPathList [i] + "\" could not be loaded. Format not supported", LOG_TYPE::WARNING);
 					return false;
 				}
 
@@ -176,7 +176,7 @@ namespace se{
 				// If Above Fails Return Unknown Error
 				else{
 
-					std::cout << "ERROR: The texture \"" << texPathList [i] << "\" could not be loaded.\nUnknown error.\n";
+					utility::DebugLog::WriteLog ("The texture \"" + texPathList [i] + "\" could not be loaded. Unknown error", LOG_TYPE::WARNING);
 					return false;
 				}
 			}

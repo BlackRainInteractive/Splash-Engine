@@ -6,9 +6,9 @@
 //============================================================================
 
 #include "Material.h"
+#include "../../Utility/DebugLog/DebugLog.h"
 #include <GL/glew.h>
 #include <fstream>
-#include <iostream>
 #include <vector>
 
 // The Splash Engine Namespace
@@ -300,7 +300,7 @@ namespace se{
 			// Display Error If File Not Found
 			else{
 
-				std::cout << "\nERROR: The shader '" << Shader << "' could not be found.\n";
+				utility::DebugLog::WriteLog ("The shader '" + Shader + "' could not be found", LOG_TYPE::WARNING);
 				return ("");
 			}
 
@@ -360,7 +360,7 @@ namespace se{
 				for (unsigned int i = 0; i < errorLog.size (); ++i)
 					s += errorLog [i];
 
-				std::cout << "\nERROR: The shader program could not be linked: " << s << '\n';
+				utility::DebugLog::WriteLog ("The shader program could not be linked: " + s, LOG_TYPE::WARNING);
 
 				return true;
 			}

@@ -9,6 +9,7 @@
 #include "../Audio/Player/PlayerMusic.h"
 #include "../Input/Input.h"
 #include "../Time/Time.h"
+#include "../Utility/DebugLog/DebugLog.h"
 #include <FMOD/fmod.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -43,7 +44,7 @@ namespace se{
 									  glm::vec4 (Width / 2, Height / 2, 0.0f, 1.0f));
 
 		// Print Creating Window
-		std::cout << "Creating Window... ";
+		utility::DebugLog::WriteLog ("Creating window", LOG_TYPE::MESSAGE);
 
 		// Create The Window
 		if (Fullscreen)
@@ -55,14 +56,9 @@ namespace se{
 		// Check If Creation Failed
 		if (!Window::windowHandle){
 
-			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not create window.\n";
-
+			utility::DebugLog::WriteLog ("Window creation failed", LOG_TYPE::ERROR);
 			return false;
 		}
-
-		// Print Success
-		std::cout << "Done\n";
 
 		// Create The OpenGL Context
 		if (!Window::InitGLEW ())
@@ -173,7 +169,7 @@ namespace se{
 	bool Window::InitGLEW (){
 
 		// Print Creating Context
-		std::cout << "Creating Context... ";
+		utility::DebugLog::WriteLog ("Creating OpenGL context", LOG_TYPE::MESSAGE);
 
 		// Create The OpenGL Context
 		glfwMakeContextCurrent (Window::windowHandle);
@@ -181,16 +177,11 @@ namespace se{
 		// Init Glew And Check For Errors
 		glewExperimental = true;
 
-		if (glewInit() != GLEW_OK){
+		if (glewInit () != GLEW_OK){
 
-			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not initialize GLEW.\n";
-
+			utility::DebugLog::WriteLog ("Context could not be created", LOG_TYPE::ERROR);
 			return false;
 		}
-
-		// Print Success
-		std::cout << "Done\n";
 
 		return true;
 	}

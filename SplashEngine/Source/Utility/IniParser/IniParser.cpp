@@ -6,9 +6,9 @@
 //============================================================================
 
 #include "IniParser.h"
+#include "../DebugLog/DebugLog.h"
 #include <algorithm>
 #include <fstream>
-#include <iostream>
 
 // The Splash Engine Namespace
 namespace se{
@@ -41,7 +41,7 @@ namespace se{
 			// Return Error
 			else{
 
-				std::cout << "ERROR: Could not load INI file '" << File << "'.\n";
+				DebugLog::WriteLog ("Could not load INI file '" + File + "'", LOG_TYPE::WARNING);
 				return false;
 			}
 

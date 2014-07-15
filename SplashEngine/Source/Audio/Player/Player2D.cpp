@@ -6,8 +6,8 @@
 //============================================================================
 
 #include "Player2D.h"
+#include "../../Utility/DebugLog/DebugLog.h"
 #include <FMOD/fmod.hpp>
-#include <iostream>
 
 // The Splash Engine Namespace
 namespace se{
@@ -38,7 +38,7 @@ namespace se{
 			// Check For Errors
 			if (result != FMOD_OK){
 
-				std::cout << "ERROR: Could not load audio '" <<  AudioPath << "'\n";
+				utility::DebugLog::WriteLog ("Could not load audio '" + AudioPath + "'", LOG_TYPE::WARNING);
 				return false;
 			}
 

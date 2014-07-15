@@ -7,4 +7,5 @@
 //============================================================================
 
 #include "Audio/Player/Player2D.h"
+#include "Audio/Player/Player3D.h"
 #include "Audio/Player/PlayerMusic.h"

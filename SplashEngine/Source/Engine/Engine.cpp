@@ -7,6 +7,7 @@
 
 #include "Engine.h"
 #include "../Audio/Player/PlayerMusic.h"
+#include "../Utility/DebugLog/DebugLog.h"
 #include "../Window/Window.h"
 #include <FMOD/fmod.hpp>
 #include <GLFW/glfw3.h>
@@ -22,24 +23,28 @@ namespace se{
 	// Initialize The Engine
 	bool Engine::Initialize (){
 
-		// Print The Splash Engine Title
-		std::cout << "-----------------------------------" << '\n';
-		std::cout << "|   Splash Engine | Version 0.3   |" << '\n';
-		std::cout << "| (C) 2014 Black Rain Interactive |" << '\n';
-		std::cout << "-----------------------------------" << '\n';
+		// Start The Debug Log
+		utility::DebugLog::BeginLog ();
 
-		std::cout << "\nInitializing Libraries... ";
+		// Print The Splash Engine Title
+		std::cout << "-----------------------------------\n";
+		std::cout << "|   Splash Engine | Version 0.3   |\n";
+		std::cout << "| (C) 2014 Black Rain Interactive |\n";
+		std::cout << "-----------------------------------\n";
+
+		utility::DebugLog::WriteLog ("Beginning library initialization", LOG_TYPE::MESSAGE);
 
 		// Init FMOD
+		utility::DebugLog::WriteLog ("Starting FMOD", LOG_TYPE::MESSAGE);
+
 		if (!Engine::InitFMOD ())
 			return false;
 
 		// Init GLFW
+		utility::DebugLog::WriteLog ("Starting GLFW", LOG_TYPE::MESSAGE);
+
 		if (!Engine::InitGLFW ())
 			return false;
-
-		// Print Success
-		std::cout << "Done\n";
 
 		return true;
 	}
@@ -49,6 +54,8 @@ namespace se{
 	// Shut Down The Engine
 	void Engine::ShutDown (){
 
+		utility::DebugLog::WriteLog ("Shutting down engine", LOG_TYPE::MESSAGE);
+
 		// Shut Down FMOD
 		audio::PlayerMusic::soundSystem -> close ();
 		audio::PlayerMusic::soundSystem -> release ();
@@ -56,6 +63,9 @@ namespace se{
 		// Shut Down GLFW
 		glfwDestroyWindow (Window::windowHandle);
 		glfwTerminate ();
+
+		// End Debug Log
+		utility::DebugLog::EndLog ();
 	}
 
 /*============================================================================================================*/
@@ -72,8 +82,7 @@ namespace se{
 		// Check For Errors
 		if (result != FMOD_OK){
 
-			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not initialize FMOD.\n";
+			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::ERROR);
 			return false;
 		}
 
@@ -83,8 +92,7 @@ namespace se{
 		// Check For Errors
 		if (result != FMOD_OK){
 
-			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not initialize FMOD.\n";
+			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::ERROR);
 			return false;
 		}
 
@@ -101,8 +109,7 @@ namespace se{
 		if (!glfwInit ()){
 
 			// Print Error
-			std::cout << "Failed\n";
-			std::cout << "ERROR: Could not initialize GLFW.\n";
+			utility::DebugLog::WriteLog ("Could not initialize GLFW", LOG_TYPE::ERROR);
 			return false;
 		}
 
