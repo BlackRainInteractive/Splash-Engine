@@ -56,7 +56,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;GLEW_STATIC;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -84,7 +84,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;GLEW_STATIC;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Audio\Player\Player2D.cpp" />
+    <ClCompile Include="Source\Audio\Player\Player3D.cpp" />
     <ClCompile Include="Source\Audio\Player\PlayerMusic.cpp" />
     <ClCompile Include="Source\Base\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\Example.cpp" />
+    <ClCompile Include="Source\Example2.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
+    <ClCompile Include="Source\Optimization\BatchGroup\BatchGroup.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Source\Rendering\Camera\CameraFly.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
@@ -133,11 +135,13 @@
     <ClCompile Include="Source\Rendering\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Rendering\Texture\Texture.cpp" />
     <ClCompile Include="Source\Time\Time.cpp" />
+    <ClCompile Include="Source\Utility\DebugLog\DebugLog.cpp" />
     <ClCompile Include="Source\Utility\Display\Display.cpp" />
     <ClCompile Include="Source\Utility\IniParser\IniParser.cpp" />
     <ClCompile Include="Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Audio\Player\Player3D.h" />
     <ClInclude Include="Source\Base\Renderable.h" />
     <ClInclude Include="Source\Optimization\BatchGroup\BatchGroup.h" />
     <ClInclude Include="Source\Rendering\Camera\CameraFly.h" />
@@ -149,6 +153,7 @@
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\seInput.h" />
     <ClInclude Include="Source\Input\Input.h" />
+    <ClInclude Include="Source\seOptimization.h" />
     <ClInclude Include="Source\seRendering.h" />
     <ClInclude Include="Source\Rendering\Camera\Camera.h" />
     <ClInclude Include="Source\Rendering\Material\Material.h" />
@@ -165,6 +170,7 @@
     <ClInclude Include="Source\seUtility.h" />
     <ClInclude Include="Source\Utility\Display\Display.h" />
     <ClInclude Include="Source\Utility\IniParser\IniParser.h" />
+    <ClInclude Include="Source\Utility\DebugLog\DebugLog.h" />
     <ClInclude Include="Source\Window\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,14 +3,12 @@
 // Mesh Layouts
 layout (location = 0) in vec3 VertexPos;
 layout (location = 1) in vec2 TexCoord1;
-layout (location = 2) in vec2 TexCoord2;
-layout (location = 3) in vec3 NormalPos;
-layout (location = 4) in vec3 TangentPos;
-layout (location = 5) in vec3 BitangentPos;
+layout (location = 2) in vec3 NormalPos;
+layout (location = 3) in vec3 TangentPos;
+layout (location = 4) in vec3 BitangentPos;
 
 // Out Variables
 out vec2 vUV1;
-out vec2 vUV2;
 out vec3 vNormals;
 out vec3 vTangents;
 out vec3 vBitangents;
@@ -29,7 +27,6 @@ void main (){
 	
 	// Set UV Coords, Normals, And World Pos
 	vUV1	    = TexCoord1;
-	vUV2	    = TexCoord2;
 	vNormals    = NormalPos;
 	vTangents   = TangentPos;
 	vBitangents = BitangentPos;

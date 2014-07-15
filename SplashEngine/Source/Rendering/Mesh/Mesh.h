@@ -24,30 +24,35 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// The Mesh Vertex Struct
+		struct Vertex{
+
+			// Variables - Mesh Data
+			glm::vec3 vertex;
+			glm::vec3 normal;
+			glm::vec3 tangent;
+			glm::vec3 bitangent;
+			glm::vec2 texCoord;
+		};
+
+/*============================================================================================================*/
+
 		// The Mesh Data Struct
 		struct MeshData{
 
 			// Variables - Mesh Data
-			std::vector <glm::vec3> vertices;
-			std::vector <glm::vec3> normals;
-			std::vector <glm::vec3> tangents;
-			std::vector <glm::vec3> bitangents;
-			std::vector <glm::vec2> texCoord1;
-			std::vector <glm::vec2> texCoord2;
+			std::vector <Vertex> vertexData;
 			std::vector <unsigned int> indices;
+			std::shared_ptr <Texture> texture;
 
 			// Variables - Buffers
 			unsigned int arrayBuffer;
 			unsigned int vertexBuffer;
 			unsigned int indexBuffer;
-			unsigned int uvBuffer1;
-			unsigned int uvBuffer2;
+			unsigned int uvBuffer;
 			unsigned int normalBuffer;
 			unsigned int tangentBuffer;
 			unsigned int bitangentBuffer;
-
-			// Variables - Texture
-			std::shared_ptr <Texture> texture;
 		};
 
 /*============================================================================================================*/

@@ -7,7 +7,6 @@ layout (location = 3) out vec3 PositionOut;
 
 // In Variables
 in vec2 vUV1;
-in vec2 vUV2;
 in vec3 vNormals;
 in vec3 vTangents;
 in vec3 vBitangents;
