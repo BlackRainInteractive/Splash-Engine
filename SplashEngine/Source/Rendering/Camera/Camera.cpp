@@ -100,14 +100,6 @@ namespace se{
 		// Update The Camera View
 		void Camera::UpdateView (){
 
-			// Get Mouse Position, Then Reset It
-			//glm::vec2 mousePos = Input::GetMousePos ();
-			//Input::SetMousePos (Window::width / 2, Window::height / 2);
-
-			//// Calc Camera Rotation
-			//Camera::rotation.x += (Camera::lookSpeed * float (Window::height * 0.5f - mousePos.y)) * (float) Time::deltaTime;
-			//Camera::rotation.y += (Camera::lookSpeed * float (Window::width  * 0.5f - mousePos.x)) * (float) Time::deltaTime;
-
 			// Convert Rotation From Degrees To Radians
 			glm::vec3 camRot = glm::radians (Camera::rotation);
 
@@ -123,30 +115,6 @@ namespace se{
 
 			// Get Up Vector
 			Camera::upVec = glm::cross (right, direction);
-
-			// Move Camera Forward
-			//if (Input::GetKeyPressed (KEY::KEY_W))
-			//	Camera::position += direction * (float) Time::deltaTime * Camera::moveSpeed;
-
-			//// Move Camera Back
-			//if (Input::GetKeyPressed (KEY::KEY_S))
-			//	Camera::position -= direction * (float) Time::deltaTime * Camera::moveSpeed;
-
-			//// Strafe Camera Right
-			//if (Input::GetKeyPressed (KEY::KEY_D))
-			//	Camera::position += right * (float) Time::deltaTime * Camera::moveSpeed;
-
-			//// Strafe Camera Left
-			//if (Input::GetKeyPressed (KEY::KEY_A))
-			//	Camera::position -= right * (float) Time::deltaTime * Camera::moveSpeed;
-
-			//// Move Camera Up
-			//if (Input::GetKeyPressed (KEY::KEY_E))
-			//	Camera::position.y += Camera::moveSpeed * (float) Time::deltaTime;
-
-			//// Move Camera Down
-			//if (Input::GetKeyPressed (KEY::KEY_Q))
-			//	Camera::position.y -= Camera::moveSpeed * (float) Time::deltaTime;
 
 			// Set Camera Target
 			Camera::target = (Camera::position + direction);
