@@ -26,10 +26,14 @@ namespace se{
 
 		// The Batch Group Class
 		class BatchGroup{
+		public:
 
-			// Functions
+			// Functions - Adding / Removing
 			void Add (rendering::Mesh* Mesh);
 			void Remove (rendering::Mesh* Mesh);
+
+			// Functions Drawing
+			void Draw (rendering::Camera* Camera);
 
 			// Variables
 			std::vector <rendering::Mesh*> meshList;
