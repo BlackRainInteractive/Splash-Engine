@@ -6,5 +6,6 @@
 //				 It includes all utility classes.
 //============================================================================
 
+#include "Utility/DebugLog/DebugLog.h"
 #include "Utility/Display/Display.h"
 #include "Utility/IniParser/IniParser.h"
