@@ -7,7 +7,7 @@ out vec4 FragColour;
 vec2 fragUV;
 
 // Uniforms
-uniform sampler2D diffuseTexture;
+uniform sampler2D GUITexture;
 uniform vec2 WindowSize;
 uniform vec4 discardColour;
 
@@ -23,7 +23,7 @@ void main (){
 
 	//else{
 
-		FragColour = texture (diffuseTexture, fragUV);
-		//FragColour.a = 1;
+		FragColour = texture (GUITexture, fragUV);
+		FragColour.a = 1;
 	//}
 }
