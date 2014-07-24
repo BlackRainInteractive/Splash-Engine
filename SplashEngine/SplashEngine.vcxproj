@@ -120,7 +120,7 @@
     <ClCompile Include="Source\Audio\Player\PlayerMusic.cpp" />
     <ClCompile Include="Source\Base\GameObject.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\Example2.cpp" />
+    <ClCompile Include="Source\Example.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Optimization\BatchGroup\BatchGroup.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />

@@ -76,7 +76,7 @@ namespace se{
 				break;
 
 			// Error
-			case LOG_TYPE::ERROR:
+			case LOG_TYPE::FATAL:
 
 				DebugLog::fileStream << "ERROR: " << Message << '\n';
 				DebugLog::EndLog ();

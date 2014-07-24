@@ -56,7 +56,7 @@ namespace se{
 		// Check If Creation Failed
 		if (!Window::windowHandle){
 
-			utility::DebugLog::WriteLog ("Window creation failed", LOG_TYPE::ERROR);
+			utility::DebugLog::WriteLog ("Window creation failed", LOG_TYPE::FATAL);
 			return false;
 		}
 
@@ -176,10 +176,11 @@ namespace se{
 
 		// Init Glew And Check For Errors
 		glewExperimental = true;
+		GLenum err = glewInit ();
 
-		if (glewInit () != GLEW_OK){
+		if (err != GLEW_OK){
 
-			utility::DebugLog::WriteLog ("Context could not be created", LOG_TYPE::ERROR);
+			utility::DebugLog::WriteLog ("Context could not be created. " + std::string ((char*) glewGetErrorString (err)), LOG_TYPE::FATAL);
 			return false;
 		}
 

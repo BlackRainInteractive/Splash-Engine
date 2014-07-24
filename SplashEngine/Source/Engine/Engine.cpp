@@ -82,7 +82,7 @@ namespace se{
 		// Check For Errors
 		if (result != FMOD_OK){
 
-			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::ERROR);
+			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::FATAL);
 			return false;
 		}
 
@@ -92,7 +92,7 @@ namespace se{
 		// Check For Errors
 		if (result != FMOD_OK){
 
-			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::ERROR);
+			utility::DebugLog::WriteLog ("Could not initialize FMOD", LOG_TYPE::FATAL);
 			return false;
 		}
 
@@ -109,7 +109,7 @@ namespace se{
 		if (!glfwInit ()){
 
 			// Print Error
-			utility::DebugLog::WriteLog ("Could not initialize GLFW", LOG_TYPE::ERROR);
+			utility::DebugLog::WriteLog ("Could not initialize GLFW", LOG_TYPE::FATAL);
 			return false;
 		}
 
