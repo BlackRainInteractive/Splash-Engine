@@ -27,6 +27,13 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// Set The GameObjects Tag
+		void GameObject::SetTag (std::string Tag){
+			GameObject::tag = Tag;
+		}
+
+/*============================================================================================================*/
+
 		// Transform The GameObject (Via Vectors)
 		void GameObject::Transform (glm::vec3 Position, glm::vec3 Rotation, glm::vec3 Scale){
 
