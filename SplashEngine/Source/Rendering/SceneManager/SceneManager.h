@@ -32,6 +32,7 @@ namespace se{
 
 		// Forward Declare Rendering Classes
 		class Camera;
+		class GUI;
 		class Material;
 		class Skybox;
 		class Texture;
@@ -47,19 +48,22 @@ namespace se{
 			virtual ~SceneManager ();
 
 			// Functions - Adding Objects
+			void Add (Camera* Camera);
 			void Add (base::Renderable* Object);
 			void Add (optimization::BatchGroup* Object);
 			void Add (Skybox* Object);
 
 			// Functions - Removing Objects
+			void Remove (Camera* Camera);
 			void Remove (base::Renderable* Object);
 			void Remove (optimization::BatchGroup* Object);
 			void Remove (Skybox* Object);
 
 			// Functions - Drawing
-			void DrawAll (Camera* Camera, Material* PostPass);
+			void DrawAll (Material* PostPass);
 
 			// Variables - Objects
+			std::vector <Camera*> cameraList;
 			std::vector <base::Renderable*> renderableList;
 			std::vector <optimization::BatchGroup*> batchGroupList;
 			std::vector <Skybox*> skyboxList;

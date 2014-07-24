@@ -28,6 +28,10 @@ namespace se{
 			Camera::rotation   = glm::vec3 (0);
 			Camera::upVec	   = glm::vec3 (0, 1, 0);
 			Camera::parent     = nullptr;
+			Camera::viewX	   = 0;
+			Camera::viewY	   = 0;
+			Camera::viewWidth  = Window::width;
+			Camera::viewHeight = Window::height;
 		}
 
 /*============================================================================================================*/
@@ -60,9 +64,21 @@ namespace se{
 
 			// Set The Camera Variables
 			Camera::fov			= FOV;
-			Camera::aspectRatio = (float) Window::width / (float) Window::height;
+			Camera::aspectRatio = (float) Camera::viewWidth / (float) Camera::viewHeight;
 			Camera::nearZ		= Near;
 			Camera::farZ		= Far;
+		}
+
+/*============================================================================================================*/
+
+		// Set The Camera Viewport
+		void Camera::SetViewPort (int X, int Y, int Width, int Height){
+
+			Camera::viewX	    = X;
+			Camera::viewY	    = Y;
+			Camera::viewWidth   = Width;
+			Camera::viewHeight  = Height;
+			Camera::aspectRatio = (float) Camera::viewWidth / (float) Camera::viewHeight;
 		}
 
 /*============================================================================================================*/

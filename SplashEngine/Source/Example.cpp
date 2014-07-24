@@ -13,6 +13,7 @@ void EngineTest (){
 	camera.SetupCamera (se::CAMERA_MODE::PERSPECTIVE, 5, 50);
 	camera.SetupPerspective (60);
 	camera.Transform (glm::vec3 (0, 1, -4.25f), glm::vec3 (0));
+	sManager.Add (&camera);
 
 	// Load Post Pass Shader
 	se::rendering::Material matPostPass;
@@ -94,7 +95,7 @@ void EngineTest (){
 		}
 
 		// Render The Scene
-		sManager.DrawAll (&camera, &matPostPass);
+		sManager.DrawAll (&matPostPass);
 	}
 }
 

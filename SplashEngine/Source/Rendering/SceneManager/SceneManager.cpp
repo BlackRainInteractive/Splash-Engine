@@ -116,7 +116,7 @@ namespace se{
 			GLenum status = glCheckFramebufferStatus (GL_DRAW_FRAMEBUFFER);
 
 			if (status != GL_FRAMEBUFFER_COMPLETE)
-				utility::DebugLog::WriteLog ("The GBuffer could not be created", LOG_TYPE::ERROR);
+				utility::DebugLog::WriteLog ("The GBuffer could not be created", LOG_TYPE::FATAL);
 
 			// Add Textures To Texture Class
 			SceneManager::textureGBuffer -> Load (diffuseTexture, "DiffuseBufferTexture");
@@ -131,6 +131,13 @@ namespace se{
 
 /*============================================================================================================*/
 /*------PUBLIC FUNCTIONS--------------------------------------------------------------------------------------*/
+/*============================================================================================================*/
+
+		// Add Camera
+		void SceneManager::Add (Camera* Object){
+			SceneManager::cameraList.push_back (Object);
+		}
+
 /*============================================================================================================*/
 
 		// Add Renderable
@@ -150,6 +157,23 @@ namespace se{
 		// Add Skybox
 		void SceneManager::Add (Skybox* Object){
 			SceneManager::skyboxList.push_back (Object);
+		}
+
+/*============================================================================================================*/
+
+		// Remove Camera
+		void SceneManager::Remove (Camera* Object){
+
+			// Loop Through Elements
+			for (auto iter = SceneManager::cameraList.begin (); iter != SceneManager::cameraList.end (); ++iter){
+
+				// Check Pointer Value
+				if (*iter == Object){
+
+					SceneManager::cameraList.erase (iter);
+					break;
+				}
+			}
 		}
 
 /*============================================================================================================*/
@@ -206,24 +230,34 @@ namespace se{
 /*============================================================================================================*/
 
 		// Update And Draw Objects
-		void SceneManager::DrawAll (Camera* Camera, Material* PostPass){
+		void SceneManager::DrawAll (Material* PostPass){
 
-			// Bind FBO And Clear It
-			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, SceneManager::frameGBuffer);
-			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			// Loop Through All Cameras
+			for (auto Camera : SceneManager::cameraList){
 
-			// Draw All Objects
-			SceneManager::DrawSkybox (Camera);
-			SceneManager::DrawBatchGroups (Camera);
-			SceneManager::DrawRenderables (Camera);
+				// Update The Camera
+				Camera -> Update ();
 
-			// Unbind FBO
-			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);
+				// Set The Camera Viewport
+				glViewport (Camera -> viewX, Camera -> viewY, Camera -> viewWidth, Camera -> viewHeight);
 
-			// Draw Fullscreen Plane
-			glDisable (GL_DEPTH_TEST);
-			SceneManager::DrawGBuffer (PostPass);
-			glEnable (GL_DEPTH_TEST);
+				// Bind FBO And Clear It
+				glBindFramebuffer (GL_DRAW_FRAMEBUFFER, SceneManager::frameGBuffer);
+				glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+				// Draw All Objects
+				SceneManager::DrawSkybox (Camera);
+				SceneManager::DrawBatchGroups (Camera);
+				SceneManager::DrawRenderables (Camera);
+
+				// Unbind FBO
+				glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);
+
+				// Draw Fullscreen Plane
+				glDisable (GL_DEPTH_TEST);
+					SceneManager::DrawGBuffer (PostPass);
+				glEnable (GL_DEPTH_TEST);
+			}
 		}
 
 /*============================================================================================================*/
