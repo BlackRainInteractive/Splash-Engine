@@ -2,7 +2,7 @@ Splash Engine - Revision 3
 =============
 
 A fast &amp; powerful OpenGL game engine, written in C++.
-Revision 3 is the latest iteration of the engine, and also the version that is publicly avaliable.
+Revision 3 is the latest iteration of the engine, and also the first version that is publicly avaliable.
 
 While there is no documentation at this time, there is a simple example that can be used to get started.
 It is also in very early development, and is far from being feature complete.
