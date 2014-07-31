@@ -30,5 +30,5 @@ void main (){
 	vNormals    = NormalPos;
 	vTangents   = TangentPos;
 	vBitangents = BitangentPos;
-	vWorldPos   = (V * M * (vec4 (VertexPos, 1.0)));
+	vWorldPos   = vec4 (VertexPos, 1.0);
 }

@@ -18,5 +18,5 @@ void main (){
 	gl_Position = (P * V * M) * vec4 (VertexPos, 1);
 
 	// Set World Position
-	vWorldPos = (V * M * (vec4 (VertexPos, 1.0))).xyz;
+	vWorldPos = vec4 (VertexPos, 1.0).xyz;
 }

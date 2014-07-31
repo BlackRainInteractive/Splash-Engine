@@ -22,9 +22,5 @@ void main (){
 	fragUV = gl_FragCoord.xy / vec2 (WindowSize.x, WindowSize.y);
 	
 	// Set Fragment Colour
-	//if (fragUV.x < 0.5)
-		FragColour.rgb = texture (DiffuseBufferTexture, fragUV).xyz;
-
-	//else
-	//	FragColour.rgb = texture (NormalBufferTexture, fragUV).xyz;
+	FragColour.rgb = texture (DiffuseBufferTexture, fragUV).xyz;
 }

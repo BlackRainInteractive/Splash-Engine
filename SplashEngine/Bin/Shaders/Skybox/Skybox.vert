@@ -20,5 +20,5 @@ void main (){
 	
 	// Set UV Coords, Normals, And World Pos
 	vUV = -VertexPos;
-	vWorldPos = (V * M * (vec4 (VertexPos, 1.0)));
+	vWorldPos = vec4 (VertexPos, 1.0);
 }
