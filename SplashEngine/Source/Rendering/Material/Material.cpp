@@ -7,8 +7,9 @@
 
 #include "Material.h"
 #include "../../Utility/DebugLog/DebugLog.h"
+#include "../../Utility/FileIO/FileIO.h"
 #include <GL/glew.h>
-#include <fstream>
+#include <sstream>
 #include <vector>
 
 // The Splash Engine Namespace
@@ -39,7 +40,7 @@ namespace se{
 				
 				// Load Shader Contents
 				std::string shaderString = Material::ReadFromFile (VertShader);
-				const char* shaderChar   = shaderString.c_str ();
+				const char* shaderChar = shaderString.c_str ();
 
 				// Compile The Shader
 				glShaderSource  (vertShader, 1, &shaderChar, nullptr);
@@ -200,7 +201,7 @@ namespace se{
 		bool Material::GetUniformExists (std::string Uniform){
 
 			// Iterate Through Uniform List
-			std::map <std::string, unsigned int>::iterator it = uniformList.find (Uniform);
+			auto it = uniformList.find (Uniform);
 
 			// Return Uniform Found
 			if (it != uniformList.end())
@@ -281,24 +282,10 @@ namespace se{
 		std::string Material::ReadFromFile (std::string Shader){
 
 			// Create Stream
-			std::ifstream shaderStream (Shader, std::ios::in);
-			std::string shaderString;
-
-			// Load The Vertex Shader
-			if (shaderStream.is_open ()){
-
-				std::string line = "";
-
-				// Loop Through Shader Code And Save To String
-				while (std::getline (shaderStream, line))
-					shaderString += '\n' + line;
-
-				// Close The Stream
-				shaderStream.close ();
-			}
+			std::string shaderString = utility::FileIO::LoadFromFile (Shader);
 
 			// Display Error If File Not Found
-			else{
+			if (shaderString == ""){
 
 				utility::DebugLog::WriteLog ("The shader '" + Shader + "' could not be found", LOG_TYPE::WARNING);
 				return ("");
@@ -314,7 +301,7 @@ namespace se{
 		void Material::AddUniforms (std::string Shader){
 
 			// Open File Stream
-			std::ifstream file (Shader);
+			std::istringstream file (utility::FileIO::LoadFromFile (Shader));
 			std::string tempString;
 
 			// Go Though File And Search For Uniforms
@@ -357,8 +344,8 @@ namespace se{
 				glGetProgramInfoLog (Material::shaderID, maxLength, &maxLength, &errorLog [0]);
 
 				// Buffer Error Into String
-				for (unsigned int i = 0; i < errorLog.size (); ++i)
-					s += errorLog [i];
+				for (auto i : errorLog)
+					s += i;
 
 				utility::DebugLog::WriteLog ("The shader program could not be linked: " + s, LOG_TYPE::WARNING);
 

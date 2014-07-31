@@ -7,8 +7,8 @@
 
 #include "IniParser.h"
 #include "../DebugLog/DebugLog.h"
+#include "../FileIO/FileIO.h"
 #include <algorithm>
-#include <fstream>
 
 // The Splash Engine Namespace
 namespace se{
@@ -25,28 +25,14 @@ namespace se{
 
 			// Set Parser Variables
 			IniParser::filePath = File;
+			IniParser::iniContents = FileIO::LoadFromFile (File);
 
-			// Create File Stream
-			std::ifstream file (File);
-			std::string line = "";
-
-			// Check If File Exists
-			if (file.is_open ()){
-
-				// Save File Contents To String
-				while (std::getline (file, line))
-					IniParser::iniContents += '\n' + line;
-			}
-
-			// Return Error
-			else{
+			// Check For Errors
+			if (IniParser::iniContents == ""){
 
 				DebugLog::WriteLog ("Could not load INI file '" + File + "'", LOG_TYPE::WARNING);
 				return false;
 			}
-
-			// Close The File
-			file.close ();
 
 			// Return Success
 			return true;

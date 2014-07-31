@@ -8,4 +8,5 @@
 
 #include "Utility/DebugLog/DebugLog.h"
 #include "Utility/Display/Display.h"
+#include "Utility/FileIO/FileIO.h"
 #include "Utility/IniParser/IniParser.h"
