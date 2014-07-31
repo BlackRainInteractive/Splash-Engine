@@ -22,7 +22,7 @@ namespace se{
 
 			// Functions
 			virtual void SetParent (GameObject* Parent);
-			virtual void SetTag (std::string Tag);
+			virtual void SetLayer (std::string Tag);
 			virtual void Transform (glm::vec3 Position, glm::vec3 Rotation, glm::vec3 Scale = glm::vec3 (1));
 			virtual void Transform (glm::mat4 ModelMatrix);
 			virtual glm::mat4 GetParentTransforms ();
@@ -32,7 +32,7 @@ namespace se{
 			glm::vec3 rotation;
 			glm::vec3 scale;
 			glm::mat4 mMatrix;
-			std::string tag;
+			std::string layer;
 
 			// Variables - Misc
 			GameObject* parent;

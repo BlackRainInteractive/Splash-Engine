@@ -27,9 +27,9 @@ namespace se{
 
 /*============================================================================================================*/
 
-		// Set The GameObjects Tag
-		void GameObject::SetTag (std::string Tag){
-			GameObject::tag = Tag;
+		// Set The GameObjects Layer
+		void GameObject::SetLayer (std::string Tag){
+			GameObject::layer = Tag;
 		}
 
 /*============================================================================================================*/
