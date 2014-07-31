@@ -119,11 +119,11 @@ namespace se{
 				utility::DebugLog::WriteLog ("The GBuffer could not be created", LOG_TYPE::FATAL);
 
 			// Add Textures To Texture Class
-			SceneManager::textureGBuffer -> Load (diffuseTexture, "DiffuseBufferTexture");
-			SceneManager::textureGBuffer -> Load (specularTexture, "SpecularBufferTexture");
-			SceneManager::textureGBuffer -> Load (normalTexture, "NormalBufferTexture");
-			SceneManager::textureGBuffer -> Load (positionTexture, "PositionBufferTexture");
-			SceneManager::textureGBuffer -> Load (depthTexture, "DepthBufferTexture");
+			SceneManager::textureGBuffer -> Load (diffuseTexture, Window::width, Window::height, "DiffuseBufferTexture");
+			SceneManager::textureGBuffer -> Load (specularTexture, Window::width, Window::height, "SpecularBufferTexture");
+			SceneManager::textureGBuffer -> Load (normalTexture, Window::width, Window::height, "NormalBufferTexture");
+			SceneManager::textureGBuffer -> Load (positionTexture, Window::width, Window::height, "PositionBufferTexture");
+			SceneManager::textureGBuffer -> Load (depthTexture, Window::width, Window::height, "DepthBufferTexture");
 
 			// Bind Default FBO
 			glBindFramebuffer (GL_DRAW_FRAMEBUFFER, 0);

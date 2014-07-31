@@ -60,6 +60,16 @@ namespace se{
 
 /*============================================================================================================*/
 
+		// The Texture Data Struct
+		struct TexData{
+
+			unsigned int id;
+			unsigned int width;
+			unsigned int height;
+		};
+
+/*============================================================================================================*/
+
 		// The Texture Class
 		class Texture{
 		public:
@@ -73,16 +83,20 @@ namespace se{
 					   std::string PosY, std::string NegY, 
 					   std::string PosZ, std::string NegZ, 
 					   std::string TextureName);
-			void Load (unsigned int TextureID, std::string TextureName);
+			void Load (unsigned int TextureID, unsigned int Width, unsigned int Height, std::string TextureName);
 
 			// Functions - Texture Uniforms
-			unsigned int GetTextureID (std::string Texture);
-			bool GetTextureExists	  (std::string Texture);
-			void BindTexture		  (Material* Material, std::string Texture, TEXTURE_SLOT TexSlot, int TexIndex);
-			void BindAll			  (Material* Material);
+			unsigned int GetID (std::string Texture);
+			bool Exists		   (std::string Texture);
+			void Bind		   (Material* Material, std::string Texture, TEXTURE_SLOT TexSlot, int TexIndex);
+			void BindAll	   (Material* Material);
+
+			// Functions - Utility
+			int GetWidth  (std::string Texture);
+			int GetHeight (std::string Texture);
 
 			// Variables
-			std::map <std::string, unsigned int> textureList;
+			std::map <std::string, TexData> textureData;
 		};
 	}
 }
