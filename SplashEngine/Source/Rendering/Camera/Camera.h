@@ -32,10 +32,10 @@ namespace se{
 			Camera ();
 
 			// Functions - Setup
-			virtual void SetupCamera	  (CAMERA_MODE CameraMode);
-			virtual void SetupOrtho		  (float Left, float Right, float Top, float Bottom, float Near = 0.1f, float Far = 100);
-			virtual void SetupPerspective (float FOV = 65, float Near = 0.1f, float Far = 100);
-			virtual void SetViewPort	  (int X, int Y, int Width, int Height);
+			virtual void SetupCamera   (CAMERA_MODE CameraMode);
+			virtual void SetProjection (float Left, float Right, float Top, float Bottom, float Near = 0.1f, float Far = 100);
+			virtual void SetProjection (float FOV = 65, float Near = 0.1f, float Far = 100);
+			virtual void SetViewPort   (int X, int Y, int Width, int Height);
 
 			// Functions - Updating
 			virtual void Update ();

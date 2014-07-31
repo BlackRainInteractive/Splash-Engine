@@ -125,6 +125,7 @@
     <ClCompile Include="Source\Optimization\BatchGroup\BatchGroup.cpp" />
     <ClCompile Include="Source\Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Source\Rendering\Camera\CameraFly.cpp" />
+    <ClCompile Include="Source\Rendering\Camera\CameraOrbit.cpp" />
     <ClCompile Include="Source\Rendering\Material\Material.cpp" />
     <ClCompile Include="Source\Rendering\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Rendering\Primitive\Cube.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="Source\Time\Time.cpp" />
     <ClCompile Include="Source\Utility\DebugLog\DebugLog.cpp" />
     <ClCompile Include="Source\Utility\Display\Display.cpp" />
+    <ClCompile Include="Source\Utility\FileIO\FileIO.cpp" />
     <ClCompile Include="Source\Utility\IniParser\IniParser.cpp" />
     <ClCompile Include="Source\Window\Window.cpp" />
   </ItemGroup>
@@ -145,6 +147,8 @@
     <ClInclude Include="Source\Base\Renderable.h" />
     <ClInclude Include="Source\Optimization\BatchGroup\BatchGroup.h" />
     <ClInclude Include="Source\Rendering\Camera\CameraFly.h" />
+    <ClInclude Include="Source\Rendering\Camera\CameraOrbit.h" />
+    <ClInclude Include="Source\Rendering\GUI\GUISkin.h" />
     <ClInclude Include="Source\seAudio.h" />
     <ClInclude Include="Source\Audio\Player\Player2D.h" />
     <ClInclude Include="Source\Audio\Player\PlayerMusic.h" />
@@ -169,6 +173,7 @@
     <ClInclude Include="Source\Time\Time.h" />
     <ClInclude Include="Source\seUtility.h" />
     <ClInclude Include="Source\Utility\Display\Display.h" />
+    <ClInclude Include="Source\Utility\FileIO\FileIO.h" />
     <ClInclude Include="Source\Utility\IniParser\IniParser.h" />
     <ClInclude Include="Source\Utility\DebugLog\DebugLog.h" />
     <ClInclude Include="Source\Window\Window.h" />

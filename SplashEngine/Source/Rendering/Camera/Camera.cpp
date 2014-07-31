@@ -46,7 +46,7 @@ namespace se{
 /*============================================================================================================*/
 
 		// Setup An Ortho Camera
-		void Camera::SetupOrtho (float Left, float Right, float Top, float Bottom, float Near, float Far){
+		void Camera::SetProjection (float Left, float Right, float Top, float Bottom, float Near, float Far){
 
 			// Set The Camera Variables
 			Camera::left   = Left;
@@ -60,7 +60,7 @@ namespace se{
 /*============================================================================================================*/
 
 		// Setup A Perspective Camera
-		void Camera::SetupPerspective (float FOV, float Near, float Far){
+		void Camera::SetProjection (float FOV, float Near, float Far){
 
 			// Set The Camera Variables
 			Camera::fov			= FOV;
