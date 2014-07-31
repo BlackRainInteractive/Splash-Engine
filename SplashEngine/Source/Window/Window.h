@@ -18,6 +18,15 @@ struct GLFWwindow;
 // The Splash Engine Namespace
 namespace se{
 
+	// The Window Hint Enum
+	enum WINDOW_HINT{
+	
+		RESIZABLE   = 0x00020003,
+		SHOW_BORDER = 0x00020005
+	};
+
+/*============================================================================================================*/
+
 	// The Window Class
 	class Window{
 	public:
@@ -26,6 +35,7 @@ namespace se{
 		static bool Create (int Width, int Height, std::string Title, bool Fullscreen = false);
 
 		// Functions - Window Settings
+		static void SetWindowHint  (WINDOW_HINT WindowHint, bool Value);
 		static void SetSize		   (int Width, int Height);
 		static void SetPosition	   (int X, int Y);
 		static void SetTitle	   (std::string Title);

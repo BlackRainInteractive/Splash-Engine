@@ -81,6 +81,13 @@ namespace se{
 
 /*============================================================================================================*/
 
+	// Set The Window Hint
+	void Window::SetWindowHint (WINDOW_HINT WindowHint, bool Value){
+		glfwWindowHint (WindowHint, Value);
+	}
+
+/*============================================================================================================*/
+
 	// Set The Window Size
 	void Window::SetSize (int Width, int Height){
 
