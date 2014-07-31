@@ -11,7 +11,7 @@ void EngineTest (){
 	// Setup Camera
 	se::rendering::CameraFly camera;
 	camera.SetupCamera (se::CAMERA_MODE::PERSPECTIVE, 5, 50);
-	camera.SetupPerspective (60);
+	camera.SetProjection (60);
 	camera.Transform (glm::vec3 (0, 1, -4.25f), glm::vec3 (0));
 	sManager.Add (&camera);
 
